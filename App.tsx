@@ -7,8 +7,7 @@ import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 
 import Amplify from 'aws-amplify'
-// @ts-ignore
-import config from './src/aws-exports'
+import config from './aws-exports'
 Amplify.configure(config)
 
 export default function App() {
