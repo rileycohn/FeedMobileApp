@@ -50,7 +50,7 @@ function TabOneNavigator() {
   return (
     <TabOneStack.Navigator>
       <TabOneStack.Screen
-        name="TabOneScreen"
+        name="Tab One Screen"
         component={TabOneScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
@@ -64,7 +64,7 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
+        name="Tab Two Screen"
         component={TabTwoScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
