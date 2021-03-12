@@ -1,13 +1,18 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import SignInScreen from '../screens/HomeScreen';
+import TabFourScreen from '../screens/TabFourScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import { BottomTabParamList, HomeScreenParamList, TabFourParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ProfilePicture from '../components/ProfilePicture';
+import { Profile } from '../models';
+import HomeScreen from '../screens/HomeScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,20 +21,37 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Home"
+      tabBarOptions={{ 
+        activeTintColor: Colors[colorScheme].tint,
+        showLabel: false,
+      }}>
       <BottomTab.Screen
-        name="TabOne"
+        name="Home"
+        component={HomeScreenNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-home" color={color} />,
+        }}
+      />  
+      <BottomTab.Screen
+        name="Search"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-search-outline" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
+        name="Notifications"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-notifications-outline" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="Messages"
+        component={TabFourNavigator}
+        options={{
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-mail" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -44,6 +66,40 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
+const HomeScreenStack = createStackNavigator<HomeScreenParamList>();
+
+function HomeScreenNavigator() {
+  return (
+    <HomeScreenStack.Navigator>
+      <HomeScreenStack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ 
+          //headerTitle: 'Home',
+          // headerLeftContainerStyle: {
+          //   marginLeft: 10
+          // },
+          headerLeftContainerStyle: {
+            marginLeft: 15
+          },
+          headerRightContainerStyle: {
+            marginRight: 15
+          },
+          headerLeft: () => (
+            <ProfilePicture size ={40} image={'https://i.pinimg.com/originals/d2/03/00/d20300271c0ef7892011d45a9972567b.gif'} />
+          ),
+          headerTitle: () => (
+            <Ionicons name={"logo-twitter"} size ={30} color={Colors.light.tint}/>
+          ),
+          headerRight: () => (
+            <MaterialCommunityIcons name={"star-four-points-outline"} size={30} color={Colors.light.tint} />
+          )
+      }}
+      />
+    </HomeScreenStack.Navigator>
+  );
+}
+
 const TabOneStack = createStackNavigator<TabOneParamList>();
 
 function TabOneNavigator() {
@@ -69,5 +125,19 @@ function TabTwoNavigator() {
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const TabFourStack = createStackNavigator<TabFourParamList>();
+
+function TabFourNavigator() {
+  return (
+    <TabFourStack.Navigator>
+      <TabFourStack.Screen
+        name="TabFourScreen"
+        component={TabFourScreen}
+        options={{ headerTitle: 'Tab Four Title' }}
+      />
+    </TabFourStack.Navigator>
   );
 }
