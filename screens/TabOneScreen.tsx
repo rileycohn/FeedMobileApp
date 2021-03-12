@@ -31,6 +31,7 @@ export default function TabOneScreen() {
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
             </View>
+
     </View>
   );
 }
