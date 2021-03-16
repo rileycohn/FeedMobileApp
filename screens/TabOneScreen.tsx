@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Image } from 'react-native';
+import { StyleSheet, Image, ScrollView } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import FeedDisp from '../components/FeedDisplay';
@@ -24,9 +24,11 @@ export default function TabOneScreen() {
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
-                <FeedDisp feedName='Feed1' followers='57' />
-                <FeedDisp feedName='Feed2' followers='113' />
-                <FeedDisp feedName='Feed3' followers='62' />
+                <ScrollView>
+                    <FeedDisp feedName='Feed1' followers='57' />
+                    <FeedDisp feedName='Feed2' followers='113' />
+                    <FeedDisp feedName='Feed3' followers='62' />
+                </ScrollView>
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
