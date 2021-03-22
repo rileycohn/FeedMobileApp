@@ -87,7 +87,7 @@ export declare class Comment {
   readonly id: string;
   readonly profileID?: string;
   readonly postID?: string;
-  readonly commen?: string;
+  readonly comment?: string;
   readonly commentDate?: string;
   readonly CommentToProfile?: Profile;
   readonly CommentToPost?: Post;

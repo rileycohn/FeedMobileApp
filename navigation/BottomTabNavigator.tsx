@@ -7,7 +7,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import SignInScreen from '../screens/HomeScreen';
 import TabFourScreen from '../screens/TabFourScreen';
-import TabOneScreen from '../screens/TabOneScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, HomeScreenParamList, TabFourParamList, TabOneParamList, TabTwoParamList } from '../types';
 import ProfilePicture from '../components/ProfilePicture';
@@ -107,7 +107,7 @@ function TabOneNavigator() {
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="TabOneScreen"
-        component={TabOneScreen}
+        component={ProfileScreen}
         options={{ headerTitle: 'Tab One Title' }}
       />
     </TabOneStack.Navigator>

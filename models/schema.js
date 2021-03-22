@@ -743,8 +743,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "commen": {
-                    "name": "commen",
+                "comment": {
+                    "name": "comment",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -830,5 +830,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "b6b00d1019f4a49decf59b317624818a"
+    "version": "b31e12e333d9e23cffc65e99a5a6d70b"
 };

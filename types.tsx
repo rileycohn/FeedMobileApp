@@ -4,7 +4,7 @@ export type RootStackParamList = {
 };
 
 export type BottomTabParamList = {
-  Home: undefined;            // TabOneScreen
+  Home: undefined;            // ProfileScreen
   Search: undefined;          // TabTwoScreen
   Notifications: undefined;   // TabThreeScreen
   Messages: undefined;        // TabFourScreen
