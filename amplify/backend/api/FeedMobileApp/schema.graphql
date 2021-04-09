@@ -1,0 +1,78 @@
+type Repost @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byPost", fields: ["postID"]) {
+  id: ID!
+  profileID: ID
+  postID: ID
+  repostDate: AWSDateTime
+  RepostToProfile: Profile @connection
+  RepostToPost: Post @connection
+}
+
+type Comment @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byPost", fields: ["postID"]) {
+  id: ID!
+  profileID: ID
+  postID: ID
+  comment: String
+  commentDate: AWSDateTime
+  CommentToProfile: Profile @connection
+  CommentToPost: Post @connection
+}
+
+type Likes @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byPost", fields: ["postID"]) {
+  id: ID!
+  profileID: ID
+  postID: ID
+  likeDate: AWSDateTime
+  LikeToProfile: Profile @connection
+  LikeToPost: Post @connection
+}
+
+type FeedType @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byFollowing", fields: ["followingID"]) {
+  id: ID!
+  profileID: ID
+  FeedTypeToPost: Post @connection
+  FeedTypeToProfile: Profile @connection
+  FeedTypeToFollowing: Following @connection
+  followingID: ID
+}
+
+type Following @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) {
+  id: ID!
+  profileID: ID
+  feedTypeID: ID
+  followingDate: AWSDateTime
+  followsAll: Boolean
+  FollowingToProfile: Profile @connection
+  FollowingToFeedTypes: [FeedType] @connection(keyName: "byFollowing", fields: ["id"])
+}
+
+type Post @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) {
+  id: ID!
+  profileID: ID
+  feedTypeID: ID
+  postDate: AWSDateTime
+  tags: AWSURL
+  post: String
+  PostToProfile: Profile @connection
+  PostToFeedType: FeedType @connection
+  PostToLikes: [Likes] @connection(keyName: "byPost", fields: ["id"])
+  PostToComments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  PostToReposts: [Repost] @connection(keyName: "byPost", fields: ["id"])
+}
+
+type Profile @model @auth(rules: [{allow: private, operations: [read, create, update, delete]}]) {
+  id: ID!
+  name: String!
+  phoneNum: AWSPhone
+  email: AWSEmail!
+  profilePic: String
+  dob: AWSDateTime
+  profileDate: AWSDateTime
+  ProfileToPosts: [Post] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToFollowings: [Following] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToFeedTypes: [FeedType] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToLikes: [Likes] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToComments: [Comment] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToReposts: [Repost] @connection(keyName: "byProfile", fields: ["id"])
+  bio: String
+}
+ 
