@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+// @ts-ignore 
 import { TweetType } from '../../../types'
 import styles from './styles';
 import { Ionicons, Feather, EvilIcons, AntDesign } from '@expo/vector-icons';

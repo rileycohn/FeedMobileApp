@@ -3,17 +3,36 @@ import { StyleSheet, Image, ScrollView } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import FeedDisp from '../components/FeedDisplay';
+import { gql, useQuery } from '@apollo/client';
+import { getProfile } from '../src/graphql/queries';
+import { getFeedType } from '../src/graphql/queries';
+import { getPost } from '../src/graphql/queries';
+
+
+
+
 
 export default function TabOneScreen() {
+
+        
+        const { loading, error, data } = useQuery(gql`${getProfile}`, {
+            variables: { id: "1" }
+        });
+        if (loading) return  null; 
+        if (error)  return `Error! ${error}`; 
+
+    const profile = data.getProfile;
+    console.log(data);
+
     return (
         <View style={styles.container}>
             <View style={{ flex: 3, flexDirection: 'row' }}>
                 <Image source={require('../assets/images/profilePictureExample.jpg')} style={{ flex: 3, borderColor: 'gainsboro', borderWidth:10 }} />
-                <View style={{ flex: 5, justifyContent: 'center', backgroundColor:'gainsboro' }}>
-                    <Text style={styles.pageText}>UserName123</Text>
+                <View style={{ flex: 5, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
+                    <Text style={styles.pageText}>{profile.name}</Text>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
-                    <Text style={styles.pageText}>Posts:10</Text>
+                    <Text style={styles.pageText}>Post</Text>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', backgroundColor: 'gainsboro', paddingRight:10 }}>
                     <Text style={styles.pageText}>Likes:500</Text>
