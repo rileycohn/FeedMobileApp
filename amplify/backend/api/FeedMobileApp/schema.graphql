@@ -1,27 +1,48 @@
+<<<<<<< HEAD
 type RepostV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byPostV3", fields: ["postID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+=======
+type Repost @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byPost", fields: ["postID"]) {
+>>>>>>> 11b0e76 (trying the commit again)
   id: ID!
   profileID: ID
   postID: ID
   repostDate: AWSDateTime
+<<<<<<< HEAD
   RepostToProfile: ProfileV3 @connection
   RepostToPost: PostV3 @connection
 }
 
 type CommentV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byPostV3", fields: ["postID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+=======
+  RepostToProfile: Profile @connection
+  RepostToPost: Post @connection
+}
+
+type Comment @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byPost", fields: ["postID"]) {
+>>>>>>> 11b0e76 (trying the commit again)
   id: ID!
   profileID: ID
   postID: ID
   comment: String
   commentDate: AWSDateTime
+<<<<<<< HEAD
   CommentToProfile: ProfileV3 @connection
   CommentToPost: PostV3 @connection
 }
 
 type LikesV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byPostV3", fields: ["postID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+=======
+  CommentToProfile: Profile @connection
+  CommentToPost: Post @connection
+}
+
+type Likes @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byPost", fields: ["postID"]) {
+>>>>>>> 11b0e76 (trying the commit again)
   id: ID!
   profileID: ID
   postID: ID
   likeDate: AWSDateTime
+<<<<<<< HEAD
   LikeToProfile: ProfileV3 @connection
   LikeToPost: PostV3 @connection
 }
@@ -37,23 +58,48 @@ type FeedTypeV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(nam
 }
 
 type FollowingV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byFeedTypeV3", fields: ["feedtype2ID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+=======
+  LikeToProfile: Profile @connection
+  LikeToPost: Post @connection
+}
+
+type FeedType @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) @key(name: "byFollowing", fields: ["followingID"]) {
+  id: ID!
+  profileID: ID
+  FeedTypeToPost: Post @connection
+  FeedTypeToProfile: Profile @connection
+  FeedTypeToFollowing: Following @connection
+  followingID: ID
+}
+
+type Following @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) {
+>>>>>>> 11b0e76 (trying the commit again)
   id: ID!
   profileID: ID
   feedTypeID: ID
   followingDate: AWSDateTime
   followsAll: Boolean
+<<<<<<< HEAD
   FollowingToProfile: ProfileV3 @connection
   FollowingToFeedTypes: [FeedTypeV3] @connection(keyName: "byFollowingV3", fields: ["id"])
   feedtype2ID: ID
 }
 
 type PostV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+=======
+  FollowingToProfile: Profile @connection
+  FollowingToFeedTypes: [FeedType] @connection(keyName: "byFollowing", fields: ["id"])
+}
+
+type Post @model @auth(rules: [{allow: private}]) @key(name: "byProfile", fields: ["profileID"]) {
+>>>>>>> 11b0e76 (trying the commit again)
   id: ID!
   profileID: ID
   feedTypeID: ID
   postDate: AWSDateTime
   tags: AWSURL
   post: String
+<<<<<<< HEAD
   PostToProfile: ProfileV3 @connection
   PostToFeedType: FeedTypeV3 @connection
   PostToLikes: [LikesV3] @connection(keyName: "byPostV3", fields: ["id"])
@@ -62,6 +108,16 @@ type PostV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @auth(rules:
 }
 
 type ProfileV3 @model @auth(rules: [{allow: private}, {allow: public}]) {
+=======
+  PostToProfile: Profile @connection
+  PostToFeedType: FeedType @connection
+  PostToLikes: [Likes] @connection(keyName: "byPost", fields: ["id"])
+  PostToComments: [Comment] @connection(keyName: "byPost", fields: ["id"])
+  PostToReposts: [Repost] @connection(keyName: "byPost", fields: ["id"])
+}
+
+type Profile @model @auth(rules: [{allow: private, operations: [read, create, update, delete]}]) {
+>>>>>>> 11b0e76 (trying the commit again)
   id: ID!
   name: String!
   phoneNum: AWSPhone
@@ -69,12 +125,21 @@ type ProfileV3 @model @auth(rules: [{allow: private}, {allow: public}]) {
   profilePic: String
   dob: AWSDateTime
   profileDate: AWSDateTime
+<<<<<<< HEAD
   ProfileToPosts: [PostV3] @connection(keyName: "byProfileV3", fields: ["id"])
   ProfileToFollowings: [FollowingV3] @connection(keyName: "byProfileV3", fields: ["id"])
   ProfileToFeedTypes: [FeedTypeV3] @connection(keyName: "byProfileV3", fields: ["id"])
   ProfileToLikes: [LikesV3] @connection(keyName: "byProfileV3", fields: ["id"])
   ProfileToComments: [CommentV3] @connection(keyName: "byProfileV3", fields: ["id"])
   ProfileToReposts: [RepostV3] @connection(keyName: "byProfileV3", fields: ["id"])
+=======
+  ProfileToPosts: [Post] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToFollowings: [Following] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToFeedTypes: [FeedType] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToLikes: [Likes] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToComments: [Comment] @connection(keyName: "byProfile", fields: ["id"])
+  ProfileToReposts: [Repost] @connection(keyName: "byProfile", fields: ["id"])
+>>>>>>> 11b0e76 (trying the commit again)
   bio: String
 }
  

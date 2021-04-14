@@ -924,5 +924,9 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
+<<<<<<< HEAD
     "version": "6d2231a325120e32a359f2902df09e82"
+=======
+    "version": "50093e7fdf22865a60fb6d2f6c8811e7"
+>>>>>>> 11b0e76 (trying the commit again)
 };

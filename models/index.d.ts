@@ -23,6 +23,7 @@ export declare class ProfileV3 {
   readonly profilePic?: string;
   readonly dob?: string;
   readonly profileDate?: string;
+<<<<<<< HEAD
   readonly ProfileToPosts?: (PostV3 | null)[];
   readonly ProfileToFollowings?: (FollowingV3 | null)[];
   readonly ProfileToFeedTypes?: (FeedTypeV3 | null)[];
@@ -32,6 +33,17 @@ export declare class ProfileV3 {
   readonly bio?: string;
   constructor(init: ModelInit<ProfileV3>);
   static copyOf(source: ProfileV3, mutator: (draft: MutableModel<ProfileV3>) => MutableModel<ProfileV3> | void): ProfileV3;
+=======
+  readonly ProfileToPosts?: (Post | null)[];
+  readonly ProfileToFollowings?: (Following | null)[];
+  readonly ProfileToFeedTypes?: (FeedType | null)[];
+  readonly ProfileToLikes?: (Likes | null)[];
+  readonly ProfileToComments?: (Comment | null)[];
+  readonly ProfileToReposts?: (Repost | null)[];
+  readonly bio?: string;
+  constructor(init: ModelInit<Profile>);
+  static copyOf(source: Profile, mutator: (draft: MutableModel<Profile>) => MutableModel<Profile> | void): Profile;
+>>>>>>> 11b0e76 (trying the commit again)
 }
 
 export declare class PostV3 {

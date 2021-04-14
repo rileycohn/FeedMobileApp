@@ -6,6 +6,7 @@
             "ConflictHandler": "AUTOMERGE",
             "ConflictDetection": "VERSION"
         }
+<<<<<<< HEAD
     },
     "StackMapping": {
         "CommentTable": "Comment 2",
@@ -114,5 +115,7 @@
         "GetAttRepostTableStreamArn": "Repost 2",
         "GetAttRepostDataSourceName": "Repost 2",
         "GetAttRepostTableName": "Repost 2"
+=======
+>>>>>>> 11b0e76 (trying the commit again)
     }
 }
