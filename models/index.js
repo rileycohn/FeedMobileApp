@@ -4,14 +4,14 @@ import { schema } from './schema';
 
 
 
-const { Repost, Profile, Post, FeedType, Following, Likes, Comment } = initSchema(schema);
+const { RepostV3, ProfileV3, PostV3, FeedTypeV3, FollowingV3, LikesV3, CommentV3 } = initSchema(schema);
 
 export {
-  Repost,
-  Profile,
-  Post,
-  FeedType,
-  Following,
-  Likes,
-  Comment
+  RepostV3,
+  ProfileV3,
+  PostV3,
+  FeedTypeV3,
+  FollowingV3,
+  LikesV3,
+  CommentV3
 };

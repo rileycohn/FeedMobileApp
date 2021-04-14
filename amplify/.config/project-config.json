@@ -9,8 +9,8 @@
     "framework": "react-native",
     "config": {
       "SourceDir": "/",
-      "DistributionDir": "build",
-      "BuildCommand": "npm run-script start",
+      "DistributionDir": "/",
+      "BuildCommand": "npm run-script build",
       "StartCommand": "npm run-script start"
     }
   }

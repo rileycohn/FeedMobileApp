@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  NewPostScreen: undefined;
 };
 
 export type BottomTabParamList = {
@@ -14,6 +15,10 @@ export type BottomTabParamList = {
 export type HomeScreenParamList = {
   HomeScreen: undefined;
 };
+
+//  export type NewFeedScreenParamList = {
+//    NewFeedScreen: undefined;
+//  };
 
 export type TabOneParamList = {
   TabOneScreen: undefined;
@@ -34,13 +39,13 @@ export type UserType = {
   image?: string
 }
 
-export type TweetType = {
+export type FeedType = {
   id: string,
   createdAt: string,
   user: UserType,
   content: string,
   image?: string,
   numberOfComments?: number,
-  numberOfRetweets?: number,
+  numberOfReshares?: number,
   numberOfLikes?: number
 }
