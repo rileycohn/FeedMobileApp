@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  NewPostScreen: undefined;
 };
 
 export type BottomTabParamList = {
@@ -14,6 +15,10 @@ export type BottomTabParamList = {
 export type HomeScreenParamList = {
   HomeScreen: undefined;
 };
+
+// export type NewPostScreenParamList = {
+//   NewPostScreen: undefined;
+// };
 
 export type TabOneParamList = {
   TabOneScreen: undefined;

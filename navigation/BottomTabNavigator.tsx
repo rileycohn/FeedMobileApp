@@ -2,6 +2,8 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
+import { useState } from 'react';
+import { API, Auth, graphqlOperation } from 'aws-amplify';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -13,6 +15,8 @@ import { BottomTabParamList, HomeScreenParamList, TabFourParamList, TabOneParamL
 import ProfilePicture from '../components/ProfilePicture';
 import { Profile } from '../models';
 import HomeScreen from '../screens/HomeScreen';
+import { getProfile } from '../src/graphql/queries';
+
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -69,6 +73,29 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 const HomeScreenStack = createStackNavigator<HomeScreenParamList>();
 
 function HomeScreenNavigator() {
+
+  const [user, setUser] = useState(null);
+
+  React.useEffect(() => {
+    // get current user
+    const fetchUser = async () => {
+      const userInfo = await Auth.currentAuthenticatedUser({ bypassCache: true });
+      if (!userInfo) {
+        return;
+      }
+
+      try {
+        const userData = await API.graphql(graphqlOperation(getProfile, { id: userInfo.attributes.sub }))
+        if (userData) {
+          setUser(userData.data.getProfile);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    fetchUser();
+  }, [])
+
   return (
     <HomeScreenStack.Navigator>
       <HomeScreenStack.Screen
@@ -87,6 +114,9 @@ function HomeScreenNavigator() {
           },
           headerLeft: () => (
             <ProfilePicture size ={40} image={'https://i.pinimg.com/originals/d2/03/00/d20300271c0ef7892011d45a9972567b.gif'} />
+
+            // the commented  ProfilePic is for backend. Needs to be fixed.
+            //<ProfilePicture size ={40} image={!user ? user?.image : ''} />
           ),
           headerTitle: () => (
             <Ionicons name={"logo-twitter"} size ={30} color={Colors.light.tint}/>

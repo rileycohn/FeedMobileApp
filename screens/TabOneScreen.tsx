@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
 
 import { Text, View } from '../components/Themed';
-import FeedDisp from '../components/FeedDisplay';
+/*import FeedDisp from '../components/FeedDisplay';
 
 export default function TabOneScreen() {
     return (
@@ -64,3 +64,4 @@ const styles = StyleSheet.create({
     }
     
 });
+*/

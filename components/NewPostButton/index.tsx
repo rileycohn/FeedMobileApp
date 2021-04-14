@@ -1,12 +1,16 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-
+import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
 const NewPostButton = () => {
+
+    const navigation = useNavigation();
+
     const onPress = () => {
-        console.warn('This button works when pressed!(:');
+        navigation.navigate('NewPostScreen');
+        //console.warn('This button works when pressed!(:');
     }
     return (
     <TouchableOpacity 
