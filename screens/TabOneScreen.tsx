@@ -7,6 +7,7 @@ import { gql, useQuery } from '@apollo/client';
 import { getProfile } from '../src/graphql/queries';
 import { getFeedType } from '../src/graphql/queries';
 import { getPost } from '../src/graphql/queries';
+import { getProfilePageDetails } from '../src/graphql/custom-queries';
 
 
 
@@ -14,16 +15,21 @@ import { getPost } from '../src/graphql/queries';
 
 export default function TabOneScreen() {
 
+
         
-        const { loading, error, data } = useQuery(gql`${getProfile}`, {
+        
+
+
+        const { loading, error, data } = useQuery(gql`${getProfilePageDetails}`, {
             variables: { id: "1" }
         });
-        if (loading) return  null; 
+        if (loading) return  null;
         if (error)  return `Error! ${error}`; 
+        const profile = data.getProfileV3; 
 
-    const profile = data.getProfile;
-    console.log(data);
+        console.log(data);
 
+ 
     return (
         <View style={styles.container}>
             <View style={{ flex: 3, flexDirection: 'row' }}>
@@ -32,25 +38,26 @@ export default function TabOneScreen() {
                     <Text style={styles.pageText}>{profile.name}</Text>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
-                    <Text style={styles.pageText}>Post</Text>
+                    <Text style={styles.pageText}>Posts</Text>
                 </View>
                 <View style={{ flex: 3, justifyContent: 'center', backgroundColor: 'gainsboro', paddingRight:10 }}>
                     <Text style={styles.pageText}>Likes:500</Text>
                 </View>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
-                <Text style={styles.pageText}>I am a generic user on the app 'Feed'</Text>
+                <Text style={styles.pageText}>{profile.bio}</Text>
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
                 <ScrollView>
-                    <FeedDisp feedName='Feed1' followers='57' />
+                    <FeedDisp feedName= {profile.ProfileToFeedTypes.items[0].feedName} followers={profile.ProfileToFeedTypes.items[0].FeedTypeToFollowing.items.length} />
                     <FeedDisp feedName='Feed2' followers='113' />
                     <FeedDisp feedName='Feed3' followers='62' />
                 </ScrollView>
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
+                <Text style={styles.pageTextLeft}>{profile.ProfileToPosts.items[0].post}</Text>
             </View>
     </View>
   );
