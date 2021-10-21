@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, } from 'react-native';
 import { Text, View } from './Themed';
 
-export default function FeedDisp({ feedName, followers }: { feedName: string, followers:string } ) {
+export default function FeedDisp({ feedName, followers }: { feedName: string, followers: string } ) {
     return (
         <View style={styles.container}>
             <View style={styles.nameView}>

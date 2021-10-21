@@ -15,25 +15,51 @@ import { getProfilePageDetails } from '../src/graphql/custom-queries';
 
 export default function TabOneScreen() {
 
+    const { loading, error, data } = useQuery(gql`${getProfilePageDetails}`, {
+        variables: { id: "1" }
+    });
+    if (loading) return  null;
+    if (error)  return `Error! ${error}`; 
+    const profile = data.getProfileV3; 
+    
+    console.log(data);
 
-        
-        
+
+function displayPost() {
+    return profile.ProfileToPosts.items.map ((posts) =>
+    { return (posts.post + "\n");  
+    });
+
+}
+function displayFeed() {
+   return profile.ProfileToFeedTypes.items.map ((feeds) =>
+    { return (feeds.feedName + " \n ");  
+    }); 
+  /*  let feedName = "";
+    for (let i = 0; i < profile.ProfileToFeedTypes.items.length; i++) 
+    {
+        return (profile.ProfileToFeedTypes.items[i].feedName+ "\n");
+      } 
+*/   
+}
 
 
-        const { loading, error, data } = useQuery(gql`${getProfilePageDetails}`, {
-            variables: { id: "1" }
-        });
-        if (loading) return  null;
-        if (error)  return `Error! ${error}`; 
-        const profile = data.getProfileV3; 
+function displayFollowing() {
+    /*
+    return profile.ProfileToFeedTypes.items.FeedTypeToFollowing.items.length.map ((following) =>
+    { return (following);  
+    }); */
+   for (let i = 0; i < 3 ; i++) 
+    {
+        return (profile.ProfileToFeedTypes.items[i].FeedTypeToFollowing.items.length.toString([2]) + "\n");
+      } 
 
-        console.log(data);
+} 
 
- 
     return (
         <View style={styles.container}>
-            <View style={{ flex: 3, flexDirection: 'row' }}>
-                <Image source={require('../assets/images/profilePictureExample.jpg')} style={{ flex: 3, borderColor: 'gainsboro', borderWidth:10 }} />
+            <View style={{ flex: 8, flexDirection: 'row' }}>
+                <Image source={require('../assets/images/Abdullah.JPG')} style={{ flex: 3, borderColor: 'gainsboro', borderWidth:15 }} />
                 <View style={{ flex: 5, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
                     <Text style={styles.pageText}>{profile.name}</Text>
                 </View>
@@ -50,19 +76,28 @@ export default function TabOneScreen() {
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
                 <ScrollView>
-                    <FeedDisp feedName= {profile.ProfileToFeedTypes.items[0].feedName} followers={profile.ProfileToFeedTypes.items[0].FeedTypeToFollowing.items.length} />
-                    <FeedDisp feedName='Feed2' followers='113' />
-                    <FeedDisp feedName='Feed3' followers='62' />
+                   <FeedDisp feedName = {displayFeed()} followers = {displayFollowing} />
+ 
                 </ScrollView>
             </View>
-            <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
+          <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
-                <Text style={styles.pageTextLeft}>{profile.ProfileToPosts.items[0].post}</Text>
+                <Text style={styles.pageTextLeft}>{displayPost()} </Text>
+                   
+           
+                
+            
+
             </View>
     </View>
   );
 }
-
+    /** 
+                    <Text style={styles.pageTextLeft}>{profile.ProfileToPosts.items[1].post}</Text> 
+                      <FeedDisp feedName= {profile.ProfileToFeedTypes.items[0].feedName} followers={profile.ProfileToFeedTypes.items[0].FeedTypeToFollowing.items.length} />
+                                    <FeedDisp feedName={profile.ProfileToFeedTypes.items[1].feedName} followers={profile.ProfileToFeedTypes.items[1].FeedTypeToFollowing.items.length} />
+                    <FeedDisp feedName={profile.ProfileToFeedTypes.items[2].feedName} followers={profile.ProfileToFeedTypes.items[2].FeedTypeToFollowing.items.length} />
+                    */
 const styles = StyleSheet.create({
   container: {
         flex: 1,
@@ -92,3 +127,4 @@ const styles = StyleSheet.create({
     }
     
 });
+
