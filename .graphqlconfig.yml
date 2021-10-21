@@ -1,0 +1,12 @@
+projects:
+  FeedMobileApp:
+    schemaPath: Users/a.t/Desktop/CSE 486/Feed/FeedMobileApp/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
+        docsFilePath: /Users/a.t/Desktop/CSE 486/Feed/FeedMobileApp/graphql
