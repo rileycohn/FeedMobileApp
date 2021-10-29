@@ -2,9 +2,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateRepost = /* GraphQL */ `
-  subscription OnCreateRepost {
-    onCreateRepost {
+export const onCreateRepostV3 = /* GraphQL */ `
+  subscription OnCreateRepostV3 {
+    onCreateRepostV3 {
       id
       profileID
       postID
@@ -45,9 +45,9 @@ export const onCreateRepost = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateRepost = /* GraphQL */ `
-  subscription OnUpdateRepost {
-    onUpdateRepost {
+export const onUpdateRepostV3 = /* GraphQL */ `
+  subscription OnUpdateRepostV3 {
+    onUpdateRepostV3 {
       id
       profileID
       postID
@@ -88,9 +88,9 @@ export const onUpdateRepost = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteRepost = /* GraphQL */ `
-  subscription OnDeleteRepost {
-    onDeleteRepost {
+export const onDeleteRepostV3 = /* GraphQL */ `
+  subscription OnDeleteRepostV3 {
+    onDeleteRepostV3 {
       id
       profileID
       postID
@@ -131,9 +131,9 @@ export const onDeleteRepost = /* GraphQL */ `
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreateCommentV3 = /* GraphQL */ `
+  subscription OnCreateCommentV3 {
+    onCreateCommentV3 {
       id
       profileID
       postID
@@ -175,9 +175,9 @@ export const onCreateComment = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateCommentV3 = /* GraphQL */ `
+  subscription OnUpdateCommentV3 {
+    onUpdateCommentV3 {
       id
       profileID
       postID
@@ -219,9 +219,9 @@ export const onUpdateComment = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteCommentV3 = /* GraphQL */ `
+  subscription OnDeleteCommentV3 {
+    onDeleteCommentV3 {
       id
       profileID
       postID
@@ -263,9 +263,9 @@ export const onDeleteComment = /* GraphQL */ `
     }
   }
 `;
-export const onCreateLikes = /* GraphQL */ `
-  subscription OnCreateLikes {
-    onCreateLikes {
+export const onCreateLikesV3 = /* GraphQL */ `
+  subscription OnCreateLikesV3 {
+    onCreateLikesV3 {
       id
       profileID
       postID
@@ -306,9 +306,9 @@ export const onCreateLikes = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateLikes = /* GraphQL */ `
-  subscription OnUpdateLikes {
-    onUpdateLikes {
+export const onUpdateLikesV3 = /* GraphQL */ `
+  subscription OnUpdateLikesV3 {
+    onUpdateLikesV3 {
       id
       profileID
       postID
@@ -349,9 +349,9 @@ export const onUpdateLikes = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteLikes = /* GraphQL */ `
-  subscription OnDeleteLikes {
-    onDeleteLikes {
+export const onDeleteLikesV3 = /* GraphQL */ `
+  subscription OnDeleteLikesV3 {
+    onDeleteLikesV3 {
       id
       profileID
       postID
@@ -392,28 +392,21 @@ export const onDeleteLikes = /* GraphQL */ `
     }
   }
 `;
-export const onCreateFeedType = /* GraphQL */ `
-  subscription OnCreateFeedType {
-    onCreateFeedType {
+export const onCreateFeedTypeV3 = /* GraphQL */ `
+  subscription OnCreateFeedTypeV3 {
+    onCreateFeedTypeV3 {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -446,28 +439,21 @@ export const onCreateFeedType = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateFeedType = /* GraphQL */ `
-  subscription OnUpdateFeedType {
-    onUpdateFeedType {
+export const onUpdateFeedTypeV3 = /* GraphQL */ `
+  subscription OnUpdateFeedTypeV3 {
+    onUpdateFeedTypeV3 {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -500,28 +486,21 @@ export const onUpdateFeedType = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteFeedType = /* GraphQL */ `
-  subscription OnDeleteFeedType {
-    onDeleteFeedType {
+export const onDeleteFeedTypeV3 = /* GraphQL */ `
+  subscription OnDeleteFeedTypeV3 {
+    onDeleteFeedTypeV3 {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -554,14 +533,15 @@ export const onDeleteFeedType = /* GraphQL */ `
     }
   }
 `;
-export const onCreateFollowing = /* GraphQL */ `
-  subscription OnCreateFollowing {
-    onCreateFollowing {
+export const onCreateFollowingV3 = /* GraphQL */ `
+  subscription OnCreateFollowingV3 {
+    onCreateFollowingV3 {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -589,14 +569,15 @@ export const onCreateFollowing = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateFollowing = /* GraphQL */ `
-  subscription OnUpdateFollowing {
-    onUpdateFollowing {
+export const onUpdateFollowingV3 = /* GraphQL */ `
+  subscription OnUpdateFollowingV3 {
+    onUpdateFollowingV3 {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -624,14 +605,15 @@ export const onUpdateFollowing = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteFollowing = /* GraphQL */ `
-  subscription OnDeleteFollowing {
-    onDeleteFollowing {
+export const onDeleteFollowingV3 = /* GraphQL */ `
+  subscription OnDeleteFollowingV3 {
+    onDeleteFollowingV3 {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -659,9 +641,9 @@ export const onDeleteFollowing = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onCreatePostV3 = /* GraphQL */ `
+  subscription OnCreatePostV3 {
+    onCreatePostV3 {
       id
       profileID
       feedTypeID
@@ -689,6 +671,7 @@ export const onCreatePost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -713,9 +696,9 @@ export const onCreatePost = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdatePostV3 = /* GraphQL */ `
+  subscription OnUpdatePostV3 {
+    onUpdatePostV3 {
       id
       profileID
       feedTypeID
@@ -743,6 +726,7 @@ export const onUpdatePost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -767,9 +751,9 @@ export const onUpdatePost = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeletePostV3 = /* GraphQL */ `
+  subscription OnDeletePostV3 {
+    onDeletePostV3 {
       id
       profileID
       feedTypeID
@@ -797,6 +781,7 @@ export const onDeletePost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -821,9 +806,9 @@ export const onDeletePost = /* GraphQL */ `
     }
   }
 `;
-export const onCreateProfile = /* GraphQL */ `
-  subscription OnCreateProfile {
-    onCreateProfile {
+export const onCreateProfileV3 = /* GraphQL */ `
+  subscription OnCreateProfileV3 {
+    onCreateProfileV3 {
       id
       name
       phoneNum
@@ -864,9 +849,9 @@ export const onCreateProfile = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateProfile = /* GraphQL */ `
-  subscription OnUpdateProfile {
-    onUpdateProfile {
+export const onUpdateProfileV3 = /* GraphQL */ `
+  subscription OnUpdateProfileV3 {
+    onUpdateProfileV3 {
       id
       name
       phoneNum
@@ -907,9 +892,9 @@ export const onUpdateProfile = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteProfile = /* GraphQL */ `
-  subscription OnDeleteProfile {
-    onDeleteProfile {
+export const onDeleteProfileV3 = /* GraphQL */ `
+  subscription OnDeleteProfileV3 {
+    onDeleteProfileV3 {
       id
       name
       phoneNum

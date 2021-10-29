@@ -4,18 +4,18 @@ import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplif
 
 
 
-export declare class Repost {
+export declare class RepostV3 {
   readonly id: string;
   readonly profileID?: string;
   readonly postID?: string;
   readonly repostDate?: string;
-  readonly RepostToProfile?: Profile;
-  readonly RepostToPost?: Post;
-  constructor(init: ModelInit<Repost>);
-  static copyOf(source: Repost, mutator: (draft: MutableModel<Repost>) => MutableModel<Repost> | void): Repost;
+  readonly RepostToProfile?: ProfileV3;
+  readonly RepostToPost?: PostV3;
+  constructor(init: ModelInit<RepostV3>);
+  static copyOf(source: RepostV3, mutator: (draft: MutableModel<RepostV3>) => MutableModel<RepostV3> | void): RepostV3;
 }
 
-export declare class Profile {
+export declare class ProfileV3 {
   readonly id: string;
   readonly name: string;
   readonly phoneNum?: string;
@@ -23,75 +23,77 @@ export declare class Profile {
   readonly profilePic?: string;
   readonly dob?: string;
   readonly profileDate?: string;
-  readonly ProfileToPosts?: (Post | null)[];
-  readonly ProfileToFollowings?: (Following | null)[];
-  readonly ProfileToFeedTypes?: (FeedType | null)[];
-  readonly ProfileToLikes?: (Likes | null)[];
-  readonly ProfileToComments?: (Comment | null)[];
-  readonly ProfileToReposts?: (Repost | null)[];
+  readonly ProfileToPosts?: (PostV3 | null)[];
+  readonly ProfileToFollowings?: (FollowingV3 | null)[];
+  readonly ProfileToFeedTypes?: (FeedTypeV3 | null)[];
+  readonly ProfileToLikes?: (LikesV3 | null)[];
+  readonly ProfileToComments?: (CommentV3 | null)[];
+  readonly ProfileToReposts?: (RepostV3 | null)[];
   readonly bio?: string;
-  constructor(init: ModelInit<Profile>);
-  static copyOf(source: Profile, mutator: (draft: MutableModel<Profile>) => MutableModel<Profile> | void): Profile;
+  constructor(init: ModelInit<ProfileV3>);
+  static copyOf(source: ProfileV3, mutator: (draft: MutableModel<ProfileV3>) => MutableModel<ProfileV3> | void): ProfileV3;
 }
 
-export declare class Post {
+export declare class PostV3 {
   readonly id: string;
   readonly profileID?: string;
   readonly feedTypeID?: string;
   readonly postDate?: string;
   readonly tags?: string;
   readonly post?: string;
-  readonly PostToProfile?: Profile;
-  readonly PostToFeedType?: FeedType;
-  readonly PostToLikes?: (Likes | null)[];
-  readonly PostToComments?: (Comment | null)[];
-  readonly PostToReposts?: (Repost | null)[];
-  constructor(init: ModelInit<Post>);
-  static copyOf(source: Post, mutator: (draft: MutableModel<Post>) => MutableModel<Post> | void): Post;
+  readonly PostToProfile?: ProfileV3;
+  readonly PostToFeedType?: FeedTypeV3;
+  readonly PostToLikes?: (LikesV3 | null)[];
+  readonly PostToComments?: (CommentV3 | null)[];
+  readonly PostToReposts?: (RepostV3 | null)[];
+  constructor(init: ModelInit<PostV3>);
+  static copyOf(source: PostV3, mutator: (draft: MutableModel<PostV3>) => MutableModel<PostV3> | void): PostV3;
 }
 
-export declare class FeedType {
+export declare class FeedTypeV3 {
   readonly id: string;
   readonly profileID?: string;
-  readonly FeedTypeToPost?: Post;
-  readonly FeedTypeToProfile?: Profile;
-  readonly FeedTypeToFollowing?: Following;
+  readonly FeedTypeToPost?: PostV3;
+  readonly FeedTypeToProfile?: ProfileV3;
+  readonly FeedTypeToFollowing?: (FollowingV3 | null)[];
   readonly followingID?: string;
-  constructor(init: ModelInit<FeedType>);
-  static copyOf(source: FeedType, mutator: (draft: MutableModel<FeedType>) => MutableModel<FeedType> | void): FeedType;
+  readonly feedName?: string;
+  constructor(init: ModelInit<FeedTypeV3>);
+  static copyOf(source: FeedTypeV3, mutator: (draft: MutableModel<FeedTypeV3>) => MutableModel<FeedTypeV3> | void): FeedTypeV3;
 }
 
-export declare class Following {
+export declare class FollowingV3 {
   readonly id: string;
   readonly profileID?: string;
   readonly feedTypeID?: string;
   readonly followingDate?: string;
   readonly followsAll?: boolean;
-  readonly FollowingToProfile?: Profile;
-  readonly FollowingToFeedTypes?: (FeedType | null)[];
-  constructor(init: ModelInit<Following>);
-  static copyOf(source: Following, mutator: (draft: MutableModel<Following>) => MutableModel<Following> | void): Following;
+  readonly FollowingToProfile?: ProfileV3;
+  readonly FollowingToFeedTypes?: (FeedTypeV3 | null)[];
+  readonly feedtype2ID?: string;
+  constructor(init: ModelInit<FollowingV3>);
+  static copyOf(source: FollowingV3, mutator: (draft: MutableModel<FollowingV3>) => MutableModel<FollowingV3> | void): FollowingV3;
 }
 
-export declare class Likes {
+export declare class LikesV3 {
   readonly id: string;
   readonly profileID?: string;
   readonly postID?: string;
   readonly likeDate?: string;
-  readonly LikeToProfile?: Profile;
-  readonly LikeToPost?: Post;
-  constructor(init: ModelInit<Likes>);
-  static copyOf(source: Likes, mutator: (draft: MutableModel<Likes>) => MutableModel<Likes> | void): Likes;
+  readonly LikeToProfile?: ProfileV3;
+  readonly LikeToPost?: PostV3;
+  constructor(init: ModelInit<LikesV3>);
+  static copyOf(source: LikesV3, mutator: (draft: MutableModel<LikesV3>) => MutableModel<LikesV3> | void): LikesV3;
 }
 
-export declare class Comment {
+export declare class CommentV3 {
   readonly id: string;
   readonly profileID?: string;
   readonly postID?: string;
   readonly comment?: string;
   readonly commentDate?: string;
-  readonly CommentToProfile?: Profile;
-  readonly CommentToPost?: Post;
-  constructor(init: ModelInit<Comment>);
-  static copyOf(source: Comment, mutator: (draft: MutableModel<Comment>) => MutableModel<Comment> | void): Comment;
+  readonly CommentToProfile?: ProfileV3;
+  readonly CommentToPost?: PostV3;
+  constructor(init: ModelInit<CommentV3>);
+  static copyOf(source: CommentV3, mutator: (draft: MutableModel<CommentV3>) => MutableModel<CommentV3> | void): CommentV3;
 }

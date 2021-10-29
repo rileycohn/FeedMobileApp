@@ -1,7 +1,7 @@
 export const schema = {
     "models": {
-        "Repost": {
-            "name": "Repost",
+        "RepostV3": {
+            "name": "RepostV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -35,31 +35,31 @@ export const schema = {
                     "name": "RepostToProfile",
                     "isArray": false,
                     "type": {
-                        "model": "Profile"
+                        "model": "ProfileV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "repostRepostToProfileId"
+                        "targetName": "repostV3RepostToProfileId"
                     }
                 },
                 "RepostToPost": {
                     "name": "RepostToPost",
                     "isArray": false,
                     "type": {
-                        "model": "Post"
+                        "model": "PostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "repostRepostToPostId"
+                        "targetName": "repostV3RepostToPostId"
                     }
                 }
             },
             "syncable": true,
-            "pluralName": "Reposts",
+            "pluralName": "RepostV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -68,7 +68,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProfile",
+                        "name": "byProfileV3",
                         "fields": [
                             "profileID"
                         ]
@@ -77,7 +77,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byPost",
+                        "name": "byPostV3",
                         "fields": [
                             "postID"
                         ]
@@ -95,14 +95,23 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
                 }
             ]
         },
-        "Profile": {
-            "name": "Profile",
+        "ProfileV3": {
+            "name": "ProfileV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -157,7 +166,7 @@ export const schema = {
                     "name": "ProfileToPosts",
                     "isArray": true,
                     "type": {
-                        "model": "Post"
+                        "model": "PostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -171,7 +180,7 @@ export const schema = {
                     "name": "ProfileToFollowings",
                     "isArray": true,
                     "type": {
-                        "model": "Following"
+                        "model": "FollowingV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -185,7 +194,7 @@ export const schema = {
                     "name": "ProfileToFeedTypes",
                     "isArray": true,
                     "type": {
-                        "model": "FeedType"
+                        "model": "FeedTypeV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -199,7 +208,7 @@ export const schema = {
                     "name": "ProfileToLikes",
                     "isArray": true,
                     "type": {
-                        "model": "Likes"
+                        "model": "LikesV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -213,7 +222,7 @@ export const schema = {
                     "name": "ProfileToComments",
                     "isArray": true,
                     "type": {
-                        "model": "Comment"
+                        "model": "CommentV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -227,7 +236,7 @@ export const schema = {
                     "name": "ProfileToReposts",
                     "isArray": true,
                     "type": {
-                        "model": "Repost"
+                        "model": "RepostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -246,7 +255,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Profiles",
+            "pluralName": "ProfileV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -259,10 +268,19 @@ export const schema = {
                             {
                                 "allow": "private",
                                 "operations": [
-                                    "read",
                                     "create",
                                     "update",
-                                    "delete"
+                                    "delete",
+                                    "read"
+                                ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
                                 ]
                             }
                         ]
@@ -270,8 +288,8 @@ export const schema = {
                 }
             ]
         },
-        "Post": {
-            "name": "Post",
+        "PostV3": {
+            "name": "PostV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -319,33 +337,33 @@ export const schema = {
                     "name": "PostToProfile",
                     "isArray": false,
                     "type": {
-                        "model": "Profile"
+                        "model": "ProfileV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "postPostToProfileId"
+                        "targetName": "postV3PostToProfileId"
                     }
                 },
                 "PostToFeedType": {
                     "name": "PostToFeedType",
                     "isArray": false,
                     "type": {
-                        "model": "FeedType"
+                        "model": "FeedTypeV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "postPostToFeedTypeId"
+                        "targetName": "postV3PostToFeedTypeId"
                     }
                 },
                 "PostToLikes": {
                     "name": "PostToLikes",
                     "isArray": true,
                     "type": {
-                        "model": "Likes"
+                        "model": "LikesV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -359,7 +377,7 @@ export const schema = {
                     "name": "PostToComments",
                     "isArray": true,
                     "type": {
-                        "model": "Comment"
+                        "model": "CommentV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -373,7 +391,7 @@ export const schema = {
                     "name": "PostToReposts",
                     "isArray": true,
                     "type": {
-                        "model": "Repost"
+                        "model": "RepostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -385,7 +403,7 @@ export const schema = {
                 }
             },
             "syncable": true,
-            "pluralName": "Posts",
+            "pluralName": "PostV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -394,7 +412,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProfile",
+                        "name": "byProfileV3",
                         "fields": [
                             "profileID"
                         ]
@@ -412,14 +430,23 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
                 }
             ]
         },
-        "FeedType": {
-            "name": "FeedType",
+        "FeedTypeV3": {
+            "name": "FeedTypeV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -439,39 +466,40 @@ export const schema = {
                     "name": "FeedTypeToPost",
                     "isArray": false,
                     "type": {
-                        "model": "Post"
+                        "model": "PostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "feedTypeFeedTypeToPostId"
+                        "targetName": "feedTypeV3FeedTypeToPostId"
                     }
                 },
                 "FeedTypeToProfile": {
                     "name": "FeedTypeToProfile",
                     "isArray": false,
                     "type": {
-                        "model": "Profile"
+                        "model": "ProfileV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "feedTypeFeedTypeToProfileId"
+                        "targetName": "feedTypeV3FeedTypeToProfileId"
                     }
                 },
                 "FeedTypeToFollowing": {
                     "name": "FeedTypeToFollowing",
-                    "isArray": false,
+                    "isArray": true,
                     "type": {
-                        "model": "Following"
+                        "model": "FollowingV3"
                     },
                     "isRequired": false,
                     "attributes": [],
+                    "isArrayNullable": true,
                     "association": {
-                        "connectionType": "BELONGS_TO",
-                        "targetName": "feedTypeFeedTypeToFollowingId"
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "feedtype2ID"
                     }
                 },
                 "followingID": {
@@ -480,10 +508,17 @@ export const schema = {
                     "type": "ID",
                     "isRequired": false,
                     "attributes": []
+                },
+                "feedName": {
+                    "name": "feedName",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "FeedTypes",
+            "pluralName": "FeedTypeV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -492,7 +527,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProfile",
+                        "name": "byProfileV3",
                         "fields": [
                             "profileID"
                         ]
@@ -501,7 +536,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byFollowing",
+                        "name": "byFollowingV3",
                         "fields": [
                             "followingID"
                         ]
@@ -519,14 +554,23 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
                 }
             ]
         },
-        "Following": {
-            "name": "Following",
+        "FollowingV3": {
+            "name": "FollowingV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -567,20 +611,20 @@ export const schema = {
                     "name": "FollowingToProfile",
                     "isArray": false,
                     "type": {
-                        "model": "Profile"
+                        "model": "ProfileV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "followingFollowingToProfileId"
+                        "targetName": "followingV3FollowingToProfileId"
                     }
                 },
                 "FollowingToFeedTypes": {
                     "name": "FollowingToFeedTypes",
                     "isArray": true,
                     "type": {
-                        "model": "FeedType"
+                        "model": "FeedTypeV3"
                     },
                     "isRequired": false,
                     "attributes": [],
@@ -589,10 +633,17 @@ export const schema = {
                         "connectionType": "HAS_MANY",
                         "associatedWith": "followingID"
                     }
+                },
+                "feedtype2ID": {
+                    "name": "feedtype2ID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
                 }
             },
             "syncable": true,
-            "pluralName": "Followings",
+            "pluralName": "FollowingV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -601,9 +652,18 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProfile",
+                        "name": "byProfileV3",
                         "fields": [
                             "profileID"
+                        ]
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byFeedTypeV3",
+                        "fields": [
+                            "feedtype2ID"
                         ]
                     }
                 },
@@ -619,14 +679,23 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
                 }
             ]
         },
-        "Likes": {
-            "name": "Likes",
+        "LikesV3": {
+            "name": "LikesV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -660,31 +729,31 @@ export const schema = {
                     "name": "LikeToProfile",
                     "isArray": false,
                     "type": {
-                        "model": "Profile"
+                        "model": "ProfileV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "likesLikeToProfileId"
+                        "targetName": "likesV3LikeToProfileId"
                     }
                 },
                 "LikeToPost": {
                     "name": "LikeToPost",
                     "isArray": false,
                     "type": {
-                        "model": "Post"
+                        "model": "PostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "likesLikeToPostId"
+                        "targetName": "likesV3LikeToPostId"
                     }
                 }
             },
             "syncable": true,
-            "pluralName": "Likes",
+            "pluralName": "LikesV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -693,7 +762,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProfile",
+                        "name": "byProfileV3",
                         "fields": [
                             "profileID"
                         ]
@@ -702,7 +771,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byPost",
+                        "name": "byPostV3",
                         "fields": [
                             "postID"
                         ]
@@ -720,14 +789,23 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
                 }
             ]
         },
-        "Comment": {
-            "name": "Comment",
+        "CommentV3": {
+            "name": "CommentV3",
             "fields": {
                 "id": {
                     "name": "id",
@@ -768,31 +846,31 @@ export const schema = {
                     "name": "CommentToProfile",
                     "isArray": false,
                     "type": {
-                        "model": "Profile"
+                        "model": "ProfileV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "commentCommentToProfileId"
+                        "targetName": "commentV3CommentToProfileId"
                     }
                 },
                 "CommentToPost": {
                     "name": "CommentToPost",
                     "isArray": false,
                     "type": {
-                        "model": "Post"
+                        "model": "PostV3"
                     },
                     "isRequired": false,
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "commentCommentToPostId"
+                        "targetName": "commentV3CommentToPostId"
                     }
                 }
             },
             "syncable": true,
-            "pluralName": "Comments",
+            "pluralName": "CommentV3s",
             "attributes": [
                 {
                     "type": "model",
@@ -801,7 +879,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byProfile",
+                        "name": "byProfileV3",
                         "fields": [
                             "profileID"
                         ]
@@ -810,7 +888,7 @@ export const schema = {
                 {
                     "type": "key",
                     "properties": {
-                        "name": "byPost",
+                        "name": "byPostV3",
                         "fields": [
                             "postID"
                         ]
@@ -828,6 +906,15 @@ export const schema = {
                                     "delete",
                                     "read"
                                 ]
+                            },
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -837,5 +924,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "10af4e2f99103b96af5bae5eebcf4c32"
+    "version": "6d2231a325120e32a359f2902df09e82"
 };

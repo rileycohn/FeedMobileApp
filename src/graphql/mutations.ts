@@ -2,12 +2,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createRepost = /* GraphQL */ `
-  mutation CreateRepost(
-    $input: CreateRepostInput!
-    $condition: ModelRepostConditionInput
+export const createRepostV3 = /* GraphQL */ `
+  mutation CreateRepostV3(
+    $input: CreateRepostV3Input!
+    $condition: ModelRepostV3ConditionInput
   ) {
-    createRepost(input: $input, condition: $condition) {
+    createRepostV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -48,12 +48,12 @@ export const createRepost = /* GraphQL */ `
     }
   }
 `;
-export const updateRepost = /* GraphQL */ `
-  mutation UpdateRepost(
-    $input: UpdateRepostInput!
-    $condition: ModelRepostConditionInput
+export const updateRepostV3 = /* GraphQL */ `
+  mutation UpdateRepostV3(
+    $input: UpdateRepostV3Input!
+    $condition: ModelRepostV3ConditionInput
   ) {
-    updateRepost(input: $input, condition: $condition) {
+    updateRepostV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -94,12 +94,12 @@ export const updateRepost = /* GraphQL */ `
     }
   }
 `;
-export const deleteRepost = /* GraphQL */ `
-  mutation DeleteRepost(
-    $input: DeleteRepostInput!
-    $condition: ModelRepostConditionInput
+export const deleteRepostV3 = /* GraphQL */ `
+  mutation DeleteRepostV3(
+    $input: DeleteRepostV3Input!
+    $condition: ModelRepostV3ConditionInput
   ) {
-    deleteRepost(input: $input, condition: $condition) {
+    deleteRepostV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -140,12 +140,12 @@ export const deleteRepost = /* GraphQL */ `
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createCommentV3 = /* GraphQL */ `
+  mutation CreateCommentV3(
+    $input: CreateCommentV3Input!
+    $condition: ModelCommentV3ConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createCommentV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -187,12 +187,12 @@ export const createComment = /* GraphQL */ `
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateCommentV3 = /* GraphQL */ `
+  mutation UpdateCommentV3(
+    $input: UpdateCommentV3Input!
+    $condition: ModelCommentV3ConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updateCommentV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -234,12 +234,12 @@ export const updateComment = /* GraphQL */ `
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteCommentV3 = /* GraphQL */ `
+  mutation DeleteCommentV3(
+    $input: DeleteCommentV3Input!
+    $condition: ModelCommentV3ConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deleteCommentV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -281,12 +281,12 @@ export const deleteComment = /* GraphQL */ `
     }
   }
 `;
-export const createLikes = /* GraphQL */ `
-  mutation CreateLikes(
-    $input: CreateLikesInput!
-    $condition: ModelLikesConditionInput
+export const createLikesV3 = /* GraphQL */ `
+  mutation CreateLikesV3(
+    $input: CreateLikesV3Input!
+    $condition: ModelLikesV3ConditionInput
   ) {
-    createLikes(input: $input, condition: $condition) {
+    createLikesV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -327,12 +327,12 @@ export const createLikes = /* GraphQL */ `
     }
   }
 `;
-export const updateLikes = /* GraphQL */ `
-  mutation UpdateLikes(
-    $input: UpdateLikesInput!
-    $condition: ModelLikesConditionInput
+export const updateLikesV3 = /* GraphQL */ `
+  mutation UpdateLikesV3(
+    $input: UpdateLikesV3Input!
+    $condition: ModelLikesV3ConditionInput
   ) {
-    updateLikes(input: $input, condition: $condition) {
+    updateLikesV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -373,12 +373,12 @@ export const updateLikes = /* GraphQL */ `
     }
   }
 `;
-export const deleteLikes = /* GraphQL */ `
-  mutation DeleteLikes(
-    $input: DeleteLikesInput!
-    $condition: ModelLikesConditionInput
+export const deleteLikesV3 = /* GraphQL */ `
+  mutation DeleteLikesV3(
+    $input: DeleteLikesV3Input!
+    $condition: ModelLikesV3ConditionInput
   ) {
-    deleteLikes(input: $input, condition: $condition) {
+    deleteLikesV3(input: $input, condition: $condition) {
       id
       profileID
       postID
@@ -419,31 +419,24 @@ export const deleteLikes = /* GraphQL */ `
     }
   }
 `;
-export const createFeedType = /* GraphQL */ `
-  mutation CreateFeedType(
-    $input: CreateFeedTypeInput!
-    $condition: ModelFeedTypeConditionInput
+export const createFeedTypeV3 = /* GraphQL */ `
+  mutation CreateFeedTypeV3(
+    $input: CreateFeedTypeV3Input!
+    $condition: ModelFeedTypeV3ConditionInput
   ) {
-    createFeedType(input: $input, condition: $condition) {
+    createFeedTypeV3(input: $input, condition: $condition) {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -476,31 +469,24 @@ export const createFeedType = /* GraphQL */ `
     }
   }
 `;
-export const updateFeedType = /* GraphQL */ `
-  mutation UpdateFeedType(
-    $input: UpdateFeedTypeInput!
-    $condition: ModelFeedTypeConditionInput
+export const updateFeedTypeV3 = /* GraphQL */ `
+  mutation UpdateFeedTypeV3(
+    $input: UpdateFeedTypeV3Input!
+    $condition: ModelFeedTypeV3ConditionInput
   ) {
-    updateFeedType(input: $input, condition: $condition) {
+    updateFeedTypeV3(input: $input, condition: $condition) {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -533,31 +519,24 @@ export const updateFeedType = /* GraphQL */ `
     }
   }
 `;
-export const deleteFeedType = /* GraphQL */ `
-  mutation DeleteFeedType(
-    $input: DeleteFeedTypeInput!
-    $condition: ModelFeedTypeConditionInput
+export const deleteFeedTypeV3 = /* GraphQL */ `
+  mutation DeleteFeedTypeV3(
+    $input: DeleteFeedTypeV3Input!
+    $condition: ModelFeedTypeV3ConditionInput
   ) {
-    deleteFeedType(input: $input, condition: $condition) {
+    deleteFeedTypeV3(input: $input, condition: $condition) {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -590,17 +569,18 @@ export const deleteFeedType = /* GraphQL */ `
     }
   }
 `;
-export const createFollowing = /* GraphQL */ `
-  mutation CreateFollowing(
-    $input: CreateFollowingInput!
-    $condition: ModelFollowingConditionInput
+export const createFollowingV3 = /* GraphQL */ `
+  mutation CreateFollowingV3(
+    $input: CreateFollowingV3Input!
+    $condition: ModelFollowingV3ConditionInput
   ) {
-    createFollowing(input: $input, condition: $condition) {
+    createFollowingV3(input: $input, condition: $condition) {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -628,17 +608,18 @@ export const createFollowing = /* GraphQL */ `
     }
   }
 `;
-export const updateFollowing = /* GraphQL */ `
-  mutation UpdateFollowing(
-    $input: UpdateFollowingInput!
-    $condition: ModelFollowingConditionInput
+export const updateFollowingV3 = /* GraphQL */ `
+  mutation UpdateFollowingV3(
+    $input: UpdateFollowingV3Input!
+    $condition: ModelFollowingV3ConditionInput
   ) {
-    updateFollowing(input: $input, condition: $condition) {
+    updateFollowingV3(input: $input, condition: $condition) {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -666,17 +647,18 @@ export const updateFollowing = /* GraphQL */ `
     }
   }
 `;
-export const deleteFollowing = /* GraphQL */ `
-  mutation DeleteFollowing(
-    $input: DeleteFollowingInput!
-    $condition: ModelFollowingConditionInput
+export const deleteFollowingV3 = /* GraphQL */ `
+  mutation DeleteFollowingV3(
+    $input: DeleteFollowingV3Input!
+    $condition: ModelFollowingV3ConditionInput
   ) {
-    deleteFollowing(input: $input, condition: $condition) {
+    deleteFollowingV3(input: $input, condition: $condition) {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -704,12 +686,12 @@ export const deleteFollowing = /* GraphQL */ `
     }
   }
 `;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
+export const createPostV3 = /* GraphQL */ `
+  mutation CreatePostV3(
+    $input: CreatePostV3Input!
+    $condition: ModelPostV3ConditionInput
   ) {
-    createPost(input: $input, condition: $condition) {
+    createPostV3(input: $input, condition: $condition) {
       id
       profileID
       feedTypeID
@@ -737,6 +719,7 @@ export const createPost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -761,12 +744,12 @@ export const createPost = /* GraphQL */ `
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const updatePostV3 = /* GraphQL */ `
+  mutation UpdatePostV3(
+    $input: UpdatePostV3Input!
+    $condition: ModelPostV3ConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    updatePostV3(input: $input, condition: $condition) {
       id
       profileID
       feedTypeID
@@ -794,6 +777,7 @@ export const updatePost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -818,12 +802,12 @@ export const updatePost = /* GraphQL */ `
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const deletePostV3 = /* GraphQL */ `
+  mutation DeletePostV3(
+    $input: DeletePostV3Input!
+    $condition: ModelPostV3ConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    deletePostV3(input: $input, condition: $condition) {
       id
       profileID
       feedTypeID
@@ -851,6 +835,7 @@ export const deletePost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -875,12 +860,12 @@ export const deletePost = /* GraphQL */ `
     }
   }
 `;
-export const createProfile = /* GraphQL */ `
-  mutation CreateProfile(
-    $input: CreateProfileInput!
-    $condition: ModelProfileConditionInput
+export const createProfileV3 = /* GraphQL */ `
+  mutation CreateProfileV3(
+    $input: CreateProfileV3Input!
+    $condition: ModelProfileV3ConditionInput
   ) {
-    createProfile(input: $input, condition: $condition) {
+    createProfileV3(input: $input, condition: $condition) {
       id
       name
       phoneNum
@@ -921,12 +906,12 @@ export const createProfile = /* GraphQL */ `
     }
   }
 `;
-export const updateProfile = /* GraphQL */ `
-  mutation UpdateProfile(
-    $input: UpdateProfileInput!
-    $condition: ModelProfileConditionInput
+export const updateProfileV3 = /* GraphQL */ `
+  mutation UpdateProfileV3(
+    $input: UpdateProfileV3Input!
+    $condition: ModelProfileV3ConditionInput
   ) {
-    updateProfile(input: $input, condition: $condition) {
+    updateProfileV3(input: $input, condition: $condition) {
       id
       name
       phoneNum
@@ -967,12 +952,12 @@ export const updateProfile = /* GraphQL */ `
     }
   }
 `;
-export const deleteProfile = /* GraphQL */ `
-  mutation DeleteProfile(
-    $input: DeleteProfileInput!
-    $condition: ModelProfileConditionInput
+export const deleteProfileV3 = /* GraphQL */ `
+  mutation DeleteProfileV3(
+    $input: DeleteProfileV3Input!
+    $condition: ModelProfileV3ConditionInput
   ) {
-    deleteProfile(input: $input, condition: $condition) {
+    deleteProfileV3(input: $input, condition: $condition) {
       id
       name
       phoneNum
