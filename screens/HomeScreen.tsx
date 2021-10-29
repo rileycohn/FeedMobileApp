@@ -13,8 +13,8 @@ export default function HomeScreen() {
   return (
     
     <View style={styles.container}>
-       {/* <Feed /> */}
-       <NewPostButton />
+      <Feed />
+      <NewPostButton />
     </View>
   );
 }

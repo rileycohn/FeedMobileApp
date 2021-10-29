@@ -1,0 +1,80 @@
+type RepostV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byPostV3", fields: ["postID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  profileID: ID
+  postID: ID
+  repostDate: AWSDateTime
+  RepostToProfile: ProfileV3 @connection
+  RepostToPost: PostV3 @connection
+}
+
+type CommentV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byPostV3", fields: ["postID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  profileID: ID
+  postID: ID
+  comment: String
+  commentDate: AWSDateTime
+  CommentToProfile: ProfileV3 @connection
+  CommentToPost: PostV3 @connection
+}
+
+type LikesV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byPostV3", fields: ["postID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  profileID: ID
+  postID: ID
+  likeDate: AWSDateTime
+  LikeToProfile: ProfileV3 @connection
+  LikeToPost: PostV3 @connection
+}
+
+type FeedTypeV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byFollowingV3", fields: ["followingID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  profileID: ID
+  FeedTypeToPost: PostV3 @connection
+  FeedTypeToProfile: ProfileV3 @connection
+  FeedTypeToFollowing: [FollowingV3] @connection(keyName: "byFeedTypeV3", fields: ["id"])
+  followingID: ID
+  feedName: String
+}
+
+type FollowingV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @key(name: "byFeedTypeV3", fields: ["feedtype2ID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  profileID: ID
+  feedTypeID: ID
+  followingDate: AWSDateTime
+  followsAll: Boolean
+  FollowingToProfile: ProfileV3 @connection
+  FollowingToFeedTypes: [FeedTypeV3] @connection(keyName: "byFollowingV3", fields: ["id"])
+  feedtype2ID: ID
+}
+
+type PostV3 @model @key(name: "byProfileV3", fields: ["profileID"]) @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  profileID: ID
+  feedTypeID: ID
+  postDate: AWSDateTime
+  tags: AWSURL
+  post: String
+  PostToProfile: ProfileV3 @connection
+  PostToFeedType: FeedTypeV3 @connection
+  PostToLikes: [LikesV3] @connection(keyName: "byPostV3", fields: ["id"])
+  PostToComments: [CommentV3] @connection(keyName: "byPostV3", fields: ["id"])
+  PostToReposts: [RepostV3] @connection(keyName: "byPostV3", fields: ["id"])
+}
+
+type ProfileV3 @model @auth(rules: [{allow: private}, {allow: public}]) {
+  id: ID!
+  name: String!
+  phoneNum: AWSPhone
+  email: AWSEmail!
+  profilePic: String
+  dob: AWSDateTime
+  profileDate: AWSDateTime
+  ProfileToPosts: [PostV3] @connection(keyName: "byProfileV3", fields: ["id"])
+  ProfileToFollowings: [FollowingV3] @connection(keyName: "byProfileV3", fields: ["id"])
+  ProfileToFeedTypes: [FeedTypeV3] @connection(keyName: "byProfileV3", fields: ["id"])
+  ProfileToLikes: [LikesV3] @connection(keyName: "byProfileV3", fields: ["id"])
+  ProfileToComments: [CommentV3] @connection(keyName: "byProfileV3", fields: ["id"])
+  ProfileToReposts: [RepostV3] @connection(keyName: "byProfileV3", fields: ["id"])
+  bio: String
+}
+ 

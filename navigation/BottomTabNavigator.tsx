@@ -7,15 +7,13 @@ import { API, Auth, graphqlOperation } from 'aws-amplify';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import SignInScreen from '../screens/HomeScreen';
 import TabFourScreen from '../screens/TabFourScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, HomeScreenParamList, TabFourParamList, TabOneParamList, TabTwoParamList } from '../types';
 import ProfilePicture from '../components/ProfilePicture';
-import { Profile } from '../models';
 import HomeScreen from '../screens/HomeScreen';
-import { getProfile } from '../src/graphql/queries';
+import {getProfileV3} from "../src/graphql/queries";
 
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
@@ -85,7 +83,7 @@ function HomeScreenNavigator() {
       }
 
       try {
-        const userData = await API.graphql(graphqlOperation(getProfile, { id: userInfo.attributes.sub }))
+        const userData = await API.graphql(graphqlOperation(getProfileV3, { id: userInfo.attributes.sub }))
         if (userData) {
           setUser(userData.data.getProfile);
         }
