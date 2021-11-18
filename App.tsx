@@ -2,7 +2,8 @@ import {
     ApolloProvider,
     ApolloClient,
     InMemoryCache,
-    ApolloLink
+    ApolloLink,
+    gql
 } from "@apollo/client";
 // @ts-ignore
 import { withAuthenticator } from "aws-amplify-react-native";
@@ -15,6 +16,9 @@ import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
 import Amplify, { Auth } from 'aws-amplify'
+import { Hub } from 'aws-amplify';
+import { createProfileV3 } from './src/graphql/mutations';
+import { CreateProfileV3Input, ModelProfileV3ConditionInput, CreateProfileV3MutationVariables } from "./src/API";
 // @ts-ignore
 import config from './aws-exports'
 
@@ -71,3 +75,39 @@ const AppWithProvider = () => (
 );
 // Automatic create/sign-in account
 export default withAuthenticator(AppWithProvider);
+
+Hub.listen('auth', (data) => {
+    switch (data.payload.event) {
+        case 'signUp':
+            console.log('Email: ' + data.payload.data.user.username);
+            console.log('UserID: ' + data.payload.data.userSub);
+            console.log(data)
+            //on the signup event - call the function to create the profile entry in the DB
+            addProfile(data.payload.data.user.username, data.payload.data.userSub);
+            break;
+        case 'signIn':
+            console.log('the listener heard the sign in event');
+            break;
+    }
+});
+
+function addProfile(emailInput: string, idInput: string) {
+    //create the profile input
+    let input: CreateProfileV3Input = {
+        email: emailInput,
+        id: idInput,
+        name: 'PLACEHOLDER'
+    };
+    //Create the variable object for the create profile
+    let variables: CreateProfileV3MutationVariables = {
+        input
+    }
+    // Run the mutation and store the result
+    const result = client.mutate({
+        mutation: gql`${createProfileV3}`,
+        variables: variables,
+    }).then(value => { console.log(value) })
+        .catch(error => { console.log(error) })
+
+    console.log(result);
+}
