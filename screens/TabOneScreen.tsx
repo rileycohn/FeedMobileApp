@@ -9,52 +9,68 @@ import { getFeedType } from '../src/graphql/queries';
 import { getPost } from '../src/graphql/queries';
 import { getProfilePageDetails } from '../src/graphql/custom-queries';
 
-
+import Auth, { CognitoUser } from '@aws-amplify/auth';
+import { useEffect } from 'react';
+import { AuthClass } from '@aws-amplify/auth/lib-esm/Auth';
+import { isUsernamePasswordOpts,CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';
+import { Amplify, Hub } from 'aws-amplify';
+import { UserInterfaceIdiom } from 'expo-constants';
+import { client } from '../App';
 
 
 
 export default function TabOneScreen() {
 
-    const { loading, error, data } = useQuery(gql`${getProfilePageDetails}`, {
-        variables: { id: "1" }
-    });
-    if (loading) return  null;
-    if (error)  return `Error! ${error}`; 
-    const profile = data.getProfileV3; 
-    
-    console.log(data);
+
+      const[profile, setProfile] = React.useState();
+      const[isReady, setIsReady] = React.useState(false);
+
+        
+        useEffect(() => {
+            
+
+        Auth.currentAuthenticatedUser({
+            bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+        }).then(user => {
+            
+            console.log(user.getUsername())
+            client
+            .query({
+              query: gql`
+                   ${getProfilePageDetails}`, 
+                   variables : { profileID: user.getUsername()}
+            })
+
+            .then(result => {console.log(result)
+                setProfile(result.data.getProfileV3); 
+                setIsReady(true)});
+        }
+            )
+        .catch(err => console.log(err));
+
+       
+        
+         }, [])
 
 
-function displayPost() {
-    return profile.ProfileToPosts.items.map ((posts) =>
-    { return (posts.post + "\n");  
-    });
 
+ if(!isReady || !profile)
+{ 
+    return null
 }
-function displayFeed() {
-   return profile.ProfileToFeedTypes.items.map ((feeds) =>
-    { return (feeds.feedName + " \n ");  
-    }); 
-  /*  let feedName = "";
-    for (let i = 0; i < profile.ProfileToFeedTypes.items.length; i++) 
-    {
-        return (profile.ProfileToFeedTypes.items[i].feedName+ "\n");
-      } 
-*/   
-}
 
 
-function displayFollowing() {
-    /*
-    return profile.ProfileToFeedTypes.items.FeedTypeToFollowing.items.length.map ((following) =>
-    { return (following);  
-    }); */
-   for (let i = 0; i < 3 ; i++) 
-    {
-        return (profile.ProfileToFeedTypes.items[i].FeedTypeToFollowing.items.length.toString([2]) + "\n");
-      } 
+    function displayPost() {
+        return profile.ProfileToPosts.items.map ((posts) =>
+        { return (posts.post + "\n");  
+        });
 
-} 
+    }
+
+
+const displayFeed =  profile.ProfileToFeedTypes.items.map((feed: any) => {
+    return <FeedDisp feedName={feed.feedName} followers={feed.FeedTypeToFollowing.items.length}/> 
+ });
 
     return (
         <View style={styles.container}>
@@ -71,33 +87,23 @@ function displayFollowing() {
                 </View>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
+            
                 <Text style={styles.pageText}>{profile.bio}</Text>
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
                 <ScrollView>
-                   <FeedDisp feedName = {displayFeed()} followers = {displayFollowing} />
- 
+                    {displayFeed}
                 </ScrollView>
             </View>
           <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
                 <Text style={styles.pageTextLeft}>{displayPost()} </Text>
-                   
-           
-                
-            
-
             </View>
     </View>
   );
 }
-    /** 
-                    <Text style={styles.pageTextLeft}>{profile.ProfileToPosts.items[1].post}</Text> 
-                      <FeedDisp feedName= {profile.ProfileToFeedTypes.items[0].feedName} followers={profile.ProfileToFeedTypes.items[0].FeedTypeToFollowing.items.length} />
-                                    <FeedDisp feedName={profile.ProfileToFeedTypes.items[1].feedName} followers={profile.ProfileToFeedTypes.items[1].FeedTypeToFollowing.items.length} />
-                    <FeedDisp feedName={profile.ProfileToFeedTypes.items[2].feedName} followers={profile.ProfileToFeedTypes.items[2].FeedTypeToFollowing.items.length} />
-                    */
+
 const styles = StyleSheet.create({
   container: {
         flex: 1,
@@ -127,4 +133,8 @@ const styles = StyleSheet.create({
     }
     
 });
+
+function currentUserInfo() {
+    throw new Error('Function not implemented.');
+}
 

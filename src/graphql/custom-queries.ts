@@ -1,6 +1,7 @@
 export const getProfilePageDetails = /* GraphQL */ `
-query GetProfilePageDetails {
-  getProfileV3(id: "1") {
+query GetProfilePageDetails ($profileID: ID!) {
+   
+  getProfileV3(id: $profileID) {
     id
     email
     name
