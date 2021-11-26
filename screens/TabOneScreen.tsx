@@ -6,7 +6,13 @@ import FeedDisp from '../components/FeedDisplay';
 import { gql, useQuery } from '@apollo/client';
 import { getProfilePageDetails } from '../src/graphql/custom-queries';
 
-
+import Auth, { CognitoUser } from '@aws-amplify/auth';
+import { useEffect } from 'react';
+import { AuthClass } from '@aws-amplify/auth/lib-esm/Auth';
+import { isUsernamePasswordOpts,CurrentUserOpts } from '@aws-amplify/auth/lib-esm/types';
+import { Amplify, Hub } from 'aws-amplify';
+import { UserInterfaceIdiom } from 'expo-constants';
+import { client } from '../App';
 
 
 
@@ -14,18 +20,62 @@ import { getProfilePageDetails } from '../src/graphql/custom-queries';
 export default function TabOneScreen() {
 
 
+      const[profile, setProfile] = React.useState();
+      const[isReady, setIsReady] = React.useState(false);
+
         
+        useEffect(() => {
+            
+
+        Auth.currentAuthenticatedUser({
+            bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+        }).then(user => {
+            
+            console.log(user.getUsername())
+            client
+            .query({
+              query: gql`
+                   ${getProfilePageDetails}`, 
+                   variables : { profileID: user.getUsername()}
+            })
+
+            .then(result => {console.log(result)
+                setProfile(result.data.getProfileV3); 
+                setIsReady(true)});
+        }
+            )
+        .catch(err => console.log(err));
+
+       
         
+         }, [])
 
 
-        const { loading, error, data } = useQuery(gql`${getProfilePageDetails}`, {
-            variables: { id: "1" }
+
+ if(!isReady || !profile)
+{ 
+    return null
+}
+
+
+    function displayPost() {
+        return profile.ProfileToPosts.items.map ((posts) =>
+        { return (posts.post + "\n");  
         });
-        if (loading) return  null;
-        if (error)  return `Error! ${error}`; 
-        const profile = data.getProfileV3; 
 
-        console.log(data);
+    }
+
+
+const displayFeed =  profile.ProfileToFeedTypes.items.map((feed: any) => {
+    return <FeedDisp feedName={feed.feedName} followers={feed.FeedTypeToFollowing.items.length}/> 
+ });
+
+
+export default function TabOneScreen() {
+
+
+       
+
 
  
     return (
@@ -43,19 +93,22 @@ export default function TabOneScreen() {
                 </View>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
+            
                 <Text style={styles.pageText}>{profile.bio}</Text>
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
                 <ScrollView>
-                    <FeedDisp feedName= {profile.ProfileToFeedTypes.items[0].feedName} followers={profile.ProfileToFeedTypes.items[0].FeedTypeToFollowing.items.length} />
-                    <FeedDisp feedName='Feed2' followers='113' />
-                    <FeedDisp feedName='Feed3' followers='62' />
+
+                    {displayFeed}
+
                 </ScrollView>
             </View>
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
-                <Text style={styles.pageTextLeft}>{profile.ProfileToPosts.items[0].post}</Text>
+
+                <Text style={styles.pageTextLeft}>{displayPost()} </Text>
+
             </View>
     </View>
   );
@@ -89,4 +142,10 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     }
     
+
 });
+
+function currentUserInfo() {
+    throw new Error('Function not implemented.');
+}
+
