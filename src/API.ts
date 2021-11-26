@@ -2,23 +2,23 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateRepostInput = {
+export type CreateRepostV3Input = {
   id?: string | null,
   profileID?: string | null,
   postID?: string | null,
   repostDate?: string | null,
   _version?: number | null,
-  repostRepostToProfileId?: string | null,
-  repostRepostToPostId?: string | null,
+  repostV3RepostToProfileId?: string | null,
+  repostV3RepostToPostId?: string | null,
 };
 
-export type ModelRepostConditionInput = {
+export type ModelRepostV3ConditionInput = {
   profileID?: ModelIDInput | null,
   postID?: ModelIDInput | null,
   repostDate?: ModelStringInput | null,
-  and?: Array< ModelRepostConditionInput | null > | null,
-  or?: Array< ModelRepostConditionInput | null > | null,
-  not?: ModelRepostConditionInput | null,
+  and?: Array< ModelRepostV3ConditionInput | null > | null,
+  or?: Array< ModelRepostV3ConditionInput | null > | null,
+  not?: ModelRepostV3ConditionInput | null,
 };
 
 export type ModelIDInput = {
@@ -77,8 +77,8 @@ export type ModelStringInput = {
   size?: ModelSizeInput | null,
 };
 
-export type Repost = {
-  __typename: "Repost",
+export type RepostV3 = {
+  __typename: "RepostV3",
   id?: string,
   profileID?: string | null,
   postID?: string | null,
@@ -88,12 +88,12 @@ export type Repost = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  RepostToPost?: Post,
-  RepostToProfile?: Profile,
+  RepostToPost?: PostV3,
+  RepostToProfile?: ProfileV3,
 };
 
-export type Post = {
-  __typename: "Post",
+export type PostV3 = {
+  __typename: "PostV3",
   id?: string,
   profileID?: string | null,
   feedTypeID?: string | null,
@@ -105,29 +105,29 @@ export type Post = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  PostToReposts?: ModelRepostConnection,
-  PostToComments?: ModelCommentConnection,
-  PostToLikes?: ModelLikesConnection,
-  PostToFeedType?: FeedType,
-  PostToProfile?: Profile,
+  PostToReposts?: ModelRepostV3Connection,
+  PostToComments?: ModelCommentV3Connection,
+  PostToLikes?: ModelLikesV3Connection,
+  PostToFeedType?: FeedTypeV3,
+  PostToProfile?: ProfileV3,
 };
 
-export type ModelRepostConnection = {
-  __typename: "ModelRepostConnection",
-  items?:  Array<Repost | null > | null,
+export type ModelRepostV3Connection = {
+  __typename: "ModelRepostV3Connection",
+  items?:  Array<RepostV3 | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type ModelCommentConnection = {
-  __typename: "ModelCommentConnection",
-  items?:  Array<Comment | null > | null,
+export type ModelCommentV3Connection = {
+  __typename: "ModelCommentV3Connection",
+  items?:  Array<CommentV3 | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type Comment = {
-  __typename: "Comment",
+export type CommentV3 = {
+  __typename: "CommentV3",
   id?: string,
   profileID?: string | null,
   postID?: string | null,
@@ -138,12 +138,12 @@ export type Comment = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  CommentToPost?: Post,
-  CommentToProfile?: Profile,
+  CommentToPost?: PostV3,
+  CommentToProfile?: ProfileV3,
 };
 
-export type Profile = {
-  __typename: "Profile",
+export type ProfileV3 = {
+  __typename: "ProfileV3",
   id?: string,
   name?: string,
   phoneNum?: string | null,
@@ -157,23 +157,23 @@ export type Profile = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  ProfileToReposts?: ModelRepostConnection,
-  ProfileToComments?: ModelCommentConnection,
-  ProfileToLikes?: ModelLikesConnection,
-  ProfileToFeedTypes?: ModelFeedTypeConnection,
-  ProfileToFollowings?: ModelFollowingConnection,
-  ProfileToPosts?: ModelPostConnection,
+  ProfileToReposts?: ModelRepostV3Connection,
+  ProfileToComments?: ModelCommentV3Connection,
+  ProfileToLikes?: ModelLikesV3Connection,
+  ProfileToFeedTypes?: ModelFeedTypeV3Connection,
+  ProfileToFollowings?: ModelFollowingV3Connection,
+  ProfileToPosts?: ModelPostV3Connection,
 };
 
-export type ModelLikesConnection = {
-  __typename: "ModelLikesConnection",
-  items?:  Array<Likes | null > | null,
+export type ModelLikesV3Connection = {
+  __typename: "ModelLikesV3Connection",
+  items?:  Array<LikesV3 | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type Likes = {
-  __typename: "Likes",
+export type LikesV3 = {
+  __typename: "LikesV3",
   id?: string,
   profileID?: string | null,
   postID?: string | null,
@@ -183,199 +183,204 @@ export type Likes = {
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  LikeToPost?: Post,
-  LikeToProfile?: Profile,
+  LikeToPost?: PostV3,
+  LikeToProfile?: ProfileV3,
 };
 
-export type ModelFeedTypeConnection = {
-  __typename: "ModelFeedTypeConnection",
-  items?:  Array<FeedType | null > | null,
+export type ModelFeedTypeV3Connection = {
+  __typename: "ModelFeedTypeV3Connection",
+  items?:  Array<FeedTypeV3 | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type FeedType = {
-  __typename: "FeedType",
+export type FeedTypeV3 = {
+  __typename: "FeedTypeV3",
   id?: string,
   profileID?: string | null,
   followingID?: string | null,
+  feedName?: string | null,
   _version?: number,
   _deleted?: boolean | null,
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  FeedTypeToFollowing?: Following,
-  FeedTypeToPost?: Post,
-  FeedTypeToProfile?: Profile,
+  FeedTypeToFollowing?: ModelFollowingV3Connection,
+  FeedTypeToPost?: PostV3,
+  FeedTypeToProfile?: ProfileV3,
 };
 
-export type Following = {
-  __typename: "Following",
+export type ModelFollowingV3Connection = {
+  __typename: "ModelFollowingV3Connection",
+  items?:  Array<FollowingV3 | null > | null,
+  nextToken?: string | null,
+  startedAt?: number | null,
+};
+
+export type FollowingV3 = {
+  __typename: "FollowingV3",
   id?: string,
   profileID?: string | null,
   feedTypeID?: string | null,
   followingDate?: string | null,
   followsAll?: boolean | null,
+  feedtype2ID?: string | null,
   _version?: number,
   _deleted?: boolean | null,
   _lastChangedAt?: number,
   createdAt?: string,
   updatedAt?: string,
-  FollowingToFeedTypes?: ModelFeedTypeConnection,
-  FollowingToProfile?: Profile,
+  FollowingToFeedTypes?: ModelFeedTypeV3Connection,
+  FollowingToProfile?: ProfileV3,
 };
 
-export type ModelFollowingConnection = {
-  __typename: "ModelFollowingConnection",
-  items?:  Array<Following | null > | null,
+export type ModelPostV3Connection = {
+  __typename: "ModelPostV3Connection",
+  items?:  Array<PostV3 | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type ModelPostConnection = {
-  __typename: "ModelPostConnection",
-  items?:  Array<Post | null > | null,
-  nextToken?: string | null,
-  startedAt?: number | null,
-};
-
-export type UpdateRepostInput = {
+export type UpdateRepostV3Input = {
   id: string,
   profileID?: string | null,
   postID?: string | null,
   repostDate?: string | null,
   _version?: number | null,
-  repostRepostToProfileId?: string | null,
-  repostRepostToPostId?: string | null,
+  repostV3RepostToProfileId?: string | null,
+  repostV3RepostToPostId?: string | null,
 };
 
-export type DeleteRepostInput = {
-  id?: string | null,
+export type DeleteRepostV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type CreateCommentInput = {
+export type CreateCommentV3Input = {
   id?: string | null,
   profileID?: string | null,
   postID?: string | null,
   comment?: string | null,
   commentDate?: string | null,
   _version?: number | null,
-  commentCommentToProfileId?: string | null,
-  commentCommentToPostId?: string | null,
+  commentV3CommentToProfileId?: string | null,
+  commentV3CommentToPostId?: string | null,
 };
 
-export type ModelCommentConditionInput = {
+export type ModelCommentV3ConditionInput = {
   profileID?: ModelIDInput | null,
   postID?: ModelIDInput | null,
   comment?: ModelStringInput | null,
   commentDate?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
+  and?: Array< ModelCommentV3ConditionInput | null > | null,
+  or?: Array< ModelCommentV3ConditionInput | null > | null,
+  not?: ModelCommentV3ConditionInput | null,
 };
 
-export type UpdateCommentInput = {
+export type UpdateCommentV3Input = {
   id: string,
   profileID?: string | null,
   postID?: string | null,
   comment?: string | null,
   commentDate?: string | null,
   _version?: number | null,
-  commentCommentToProfileId?: string | null,
-  commentCommentToPostId?: string | null,
+  commentV3CommentToProfileId?: string | null,
+  commentV3CommentToPostId?: string | null,
 };
 
-export type DeleteCommentInput = {
-  id?: string | null,
+export type DeleteCommentV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type CreateLikesInput = {
+export type CreateLikesV3Input = {
   id?: string | null,
   profileID?: string | null,
   postID?: string | null,
   likeDate?: string | null,
   _version?: number | null,
-  likesLikeToProfileId?: string | null,
-  likesLikeToPostId?: string | null,
+  likesV3LikeToProfileId?: string | null,
+  likesV3LikeToPostId?: string | null,
 };
 
-export type ModelLikesConditionInput = {
+export type ModelLikesV3ConditionInput = {
   profileID?: ModelIDInput | null,
   postID?: ModelIDInput | null,
   likeDate?: ModelStringInput | null,
-  and?: Array< ModelLikesConditionInput | null > | null,
-  or?: Array< ModelLikesConditionInput | null > | null,
-  not?: ModelLikesConditionInput | null,
+  and?: Array< ModelLikesV3ConditionInput | null > | null,
+  or?: Array< ModelLikesV3ConditionInput | null > | null,
+  not?: ModelLikesV3ConditionInput | null,
 };
 
-export type UpdateLikesInput = {
+export type UpdateLikesV3Input = {
   id: string,
   profileID?: string | null,
   postID?: string | null,
   likeDate?: string | null,
   _version?: number | null,
-  likesLikeToProfileId?: string | null,
-  likesLikeToPostId?: string | null,
+  likesV3LikeToProfileId?: string | null,
+  likesV3LikeToPostId?: string | null,
 };
 
-export type DeleteLikesInput = {
-  id?: string | null,
+export type DeleteLikesV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type CreateFeedTypeInput = {
+export type CreateFeedTypeV3Input = {
   id?: string | null,
   profileID?: string | null,
   followingID?: string | null,
+  feedName?: string | null,
   _version?: number | null,
-  feedTypeFeedTypeToPostId?: string | null,
-  feedTypeFeedTypeToProfileId?: string | null,
-  feedTypeFeedTypeToFollowingId?: string | null,
+  feedTypeV3FeedTypeToPostId?: string | null,
+  feedTypeV3FeedTypeToProfileId?: string | null,
 };
 
-export type ModelFeedTypeConditionInput = {
+export type ModelFeedTypeV3ConditionInput = {
   profileID?: ModelIDInput | null,
   followingID?: ModelIDInput | null,
-  and?: Array< ModelFeedTypeConditionInput | null > | null,
-  or?: Array< ModelFeedTypeConditionInput | null > | null,
-  not?: ModelFeedTypeConditionInput | null,
+  feedName?: ModelStringInput | null,
+  and?: Array< ModelFeedTypeV3ConditionInput | null > | null,
+  or?: Array< ModelFeedTypeV3ConditionInput | null > | null,
+  not?: ModelFeedTypeV3ConditionInput | null,
 };
 
-export type UpdateFeedTypeInput = {
+export type UpdateFeedTypeV3Input = {
   id: string,
   profileID?: string | null,
   followingID?: string | null,
+  feedName?: string | null,
   _version?: number | null,
-  feedTypeFeedTypeToPostId?: string | null,
-  feedTypeFeedTypeToProfileId?: string | null,
-  feedTypeFeedTypeToFollowingId?: string | null,
+  feedTypeV3FeedTypeToPostId?: string | null,
+  feedTypeV3FeedTypeToProfileId?: string | null,
 };
 
-export type DeleteFeedTypeInput = {
-  id?: string | null,
+export type DeleteFeedTypeV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type CreateFollowingInput = {
+export type CreateFollowingV3Input = {
   id?: string | null,
   profileID?: string | null,
   feedTypeID?: string | null,
   followingDate?: string | null,
   followsAll?: boolean | null,
+  feedtype2ID?: string | null,
   _version?: number | null,
-  followingFollowingToProfileId?: string | null,
+  followingV3FollowingToProfileId?: string | null,
 };
 
-export type ModelFollowingConditionInput = {
+export type ModelFollowingV3ConditionInput = {
   profileID?: ModelIDInput | null,
   feedTypeID?: ModelIDInput | null,
   followingDate?: ModelStringInput | null,
   followsAll?: ModelBooleanInput | null,
-  and?: Array< ModelFollowingConditionInput | null > | null,
-  or?: Array< ModelFollowingConditionInput | null > | null,
-  not?: ModelFollowingConditionInput | null,
+  feedtype2ID?: ModelIDInput | null,
+  and?: Array< ModelFollowingV3ConditionInput | null > | null,
+  or?: Array< ModelFollowingV3ConditionInput | null > | null,
+  not?: ModelFollowingV3ConditionInput | null,
 };
 
 export type ModelBooleanInput = {
@@ -385,22 +390,23 @@ export type ModelBooleanInput = {
   attributeType?: ModelAttributeTypes | null,
 };
 
-export type UpdateFollowingInput = {
+export type UpdateFollowingV3Input = {
   id: string,
   profileID?: string | null,
   feedTypeID?: string | null,
   followingDate?: string | null,
   followsAll?: boolean | null,
+  feedtype2ID?: string | null,
   _version?: number | null,
-  followingFollowingToProfileId?: string | null,
+  followingV3FollowingToProfileId?: string | null,
 };
 
-export type DeleteFollowingInput = {
-  id?: string | null,
+export type DeleteFollowingV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type CreatePostInput = {
+export type CreatePostV3Input = {
   id?: string | null,
   profileID?: string | null,
   feedTypeID?: string | null,
@@ -408,22 +414,22 @@ export type CreatePostInput = {
   tags?: string | null,
   post?: string | null,
   _version?: number | null,
-  postPostToProfileId?: string | null,
-  postPostToFeedTypeId?: string | null,
+  postV3PostToProfileId?: string | null,
+  postV3PostToFeedTypeId?: string | null,
 };
 
-export type ModelPostConditionInput = {
+export type ModelPostV3ConditionInput = {
   profileID?: ModelIDInput | null,
   feedTypeID?: ModelIDInput | null,
   postDate?: ModelStringInput | null,
   tags?: ModelStringInput | null,
   post?: ModelStringInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
+  and?: Array< ModelPostV3ConditionInput | null > | null,
+  or?: Array< ModelPostV3ConditionInput | null > | null,
+  not?: ModelPostV3ConditionInput | null,
 };
 
-export type UpdatePostInput = {
+export type UpdatePostV3Input = {
   id: string,
   profileID?: string | null,
   feedTypeID?: string | null,
@@ -431,16 +437,16 @@ export type UpdatePostInput = {
   tags?: string | null,
   post?: string | null,
   _version?: number | null,
-  postPostToProfileId?: string | null,
-  postPostToFeedTypeId?: string | null,
+  postV3PostToProfileId?: string | null,
+  postV3PostToFeedTypeId?: string | null,
 };
 
-export type DeletePostInput = {
-  id?: string | null,
+export type DeletePostV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type CreateProfileInput = {
+export type CreateProfileV3Input = {
   id?: string | null,
   name: string,
   phoneNum?: string | null,
@@ -452,7 +458,7 @@ export type CreateProfileInput = {
   _version?: number | null,
 };
 
-export type ModelProfileConditionInput = {
+export type ModelProfileV3ConditionInput = {
   name?: ModelStringInput | null,
   phoneNum?: ModelStringInput | null,
   email?: ModelStringInput | null,
@@ -460,12 +466,12 @@ export type ModelProfileConditionInput = {
   dob?: ModelStringInput | null,
   profileDate?: ModelStringInput | null,
   bio?: ModelStringInput | null,
-  and?: Array< ModelProfileConditionInput | null > | null,
-  or?: Array< ModelProfileConditionInput | null > | null,
-  not?: ModelProfileConditionInput | null,
+  and?: Array< ModelProfileV3ConditionInput | null > | null,
+  or?: Array< ModelProfileV3ConditionInput | null > | null,
+  not?: ModelProfileV3ConditionInput | null,
 };
 
-export type UpdateProfileInput = {
+export type UpdateProfileV3Input = {
   id: string,
   name?: string | null,
   phoneNum?: string | null,
@@ -477,75 +483,77 @@ export type UpdateProfileInput = {
   _version?: number | null,
 };
 
-export type DeleteProfileInput = {
-  id?: string | null,
+export type DeleteProfileV3Input = {
+  id: string,
   _version?: number | null,
 };
 
-export type ModelRepostFilterInput = {
+export type ModelRepostV3FilterInput = {
   id?: ModelIDInput | null,
   profileID?: ModelIDInput | null,
   postID?: ModelIDInput | null,
   repostDate?: ModelStringInput | null,
-  and?: Array< ModelRepostFilterInput | null > | null,
-  or?: Array< ModelRepostFilterInput | null > | null,
-  not?: ModelRepostFilterInput | null,
+  and?: Array< ModelRepostV3FilterInput | null > | null,
+  or?: Array< ModelRepostV3FilterInput | null > | null,
+  not?: ModelRepostV3FilterInput | null,
 };
 
-export type ModelCommentFilterInput = {
+export type ModelCommentV3FilterInput = {
   id?: ModelIDInput | null,
   profileID?: ModelIDInput | null,
   postID?: ModelIDInput | null,
   comment?: ModelStringInput | null,
   commentDate?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
+  and?: Array< ModelCommentV3FilterInput | null > | null,
+  or?: Array< ModelCommentV3FilterInput | null > | null,
+  not?: ModelCommentV3FilterInput | null,
 };
 
-export type ModelLikesFilterInput = {
+export type ModelLikesV3FilterInput = {
   id?: ModelIDInput | null,
   profileID?: ModelIDInput | null,
   postID?: ModelIDInput | null,
   likeDate?: ModelStringInput | null,
-  and?: Array< ModelLikesFilterInput | null > | null,
-  or?: Array< ModelLikesFilterInput | null > | null,
-  not?: ModelLikesFilterInput | null,
+  and?: Array< ModelLikesV3FilterInput | null > | null,
+  or?: Array< ModelLikesV3FilterInput | null > | null,
+  not?: ModelLikesV3FilterInput | null,
 };
 
-export type ModelFeedTypeFilterInput = {
+export type ModelFeedTypeV3FilterInput = {
   id?: ModelIDInput | null,
   profileID?: ModelIDInput | null,
   followingID?: ModelIDInput | null,
-  and?: Array< ModelFeedTypeFilterInput | null > | null,
-  or?: Array< ModelFeedTypeFilterInput | null > | null,
-  not?: ModelFeedTypeFilterInput | null,
+  feedName?: ModelStringInput | null,
+  and?: Array< ModelFeedTypeV3FilterInput | null > | null,
+  or?: Array< ModelFeedTypeV3FilterInput | null > | null,
+  not?: ModelFeedTypeV3FilterInput | null,
 };
 
-export type ModelFollowingFilterInput = {
+export type ModelFollowingV3FilterInput = {
   id?: ModelIDInput | null,
   profileID?: ModelIDInput | null,
   feedTypeID?: ModelIDInput | null,
   followingDate?: ModelStringInput | null,
   followsAll?: ModelBooleanInput | null,
-  and?: Array< ModelFollowingFilterInput | null > | null,
-  or?: Array< ModelFollowingFilterInput | null > | null,
-  not?: ModelFollowingFilterInput | null,
+  feedtype2ID?: ModelIDInput | null,
+  and?: Array< ModelFollowingV3FilterInput | null > | null,
+  or?: Array< ModelFollowingV3FilterInput | null > | null,
+  not?: ModelFollowingV3FilterInput | null,
 };
 
-export type ModelPostFilterInput = {
+export type ModelPostV3FilterInput = {
   id?: ModelIDInput | null,
   profileID?: ModelIDInput | null,
   feedTypeID?: ModelIDInput | null,
   postDate?: ModelStringInput | null,
   tags?: ModelStringInput | null,
   post?: ModelStringInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
+  and?: Array< ModelPostV3FilterInput | null > | null,
+  or?: Array< ModelPostV3FilterInput | null > | null,
+  not?: ModelPostV3FilterInput | null,
 };
 
-export type ModelProfileFilterInput = {
+export type ModelProfileV3FilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
   phoneNum?: ModelStringInput | null,
@@ -554,26 +562,26 @@ export type ModelProfileFilterInput = {
   dob?: ModelStringInput | null,
   profileDate?: ModelStringInput | null,
   bio?: ModelStringInput | null,
-  and?: Array< ModelProfileFilterInput | null > | null,
-  or?: Array< ModelProfileFilterInput | null > | null,
-  not?: ModelProfileFilterInput | null,
+  and?: Array< ModelProfileV3FilterInput | null > | null,
+  or?: Array< ModelProfileV3FilterInput | null > | null,
+  not?: ModelProfileV3FilterInput | null,
 };
 
-export type ModelProfileConnection = {
-  __typename: "ModelProfileConnection",
-  items?:  Array<Profile | null > | null,
+export type ModelProfileV3Connection = {
+  __typename: "ModelProfileV3Connection",
+  items?:  Array<ProfileV3 | null > | null,
   nextToken?: string | null,
   startedAt?: number | null,
 };
 
-export type CreateRepostMutationVariables = {
-  input?: CreateRepostInput,
-  condition?: ModelRepostConditionInput | null,
+export type CreateRepostV3MutationVariables = {
+  input?: CreateRepostV3Input,
+  condition?: ModelRepostV3ConditionInput | null,
 };
 
-export type CreateRepostMutation = {
-  createRepost?:  {
-    __typename: "Repost",
+export type CreateRepostV3Mutation = {
+  createRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -584,7 +592,7 @@ export type CreateRepostMutation = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -598,7 +606,7 @@ export type CreateRepostMutation = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -616,14 +624,14 @@ export type CreateRepostMutation = {
   } | null,
 };
 
-export type UpdateRepostMutationVariables = {
-  input?: UpdateRepostInput,
-  condition?: ModelRepostConditionInput | null,
+export type UpdateRepostV3MutationVariables = {
+  input?: UpdateRepostV3Input,
+  condition?: ModelRepostV3ConditionInput | null,
 };
 
-export type UpdateRepostMutation = {
-  updateRepost?:  {
-    __typename: "Repost",
+export type UpdateRepostV3Mutation = {
+  updateRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -634,7 +642,7 @@ export type UpdateRepostMutation = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -648,7 +656,7 @@ export type UpdateRepostMutation = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -666,14 +674,14 @@ export type UpdateRepostMutation = {
   } | null,
 };
 
-export type DeleteRepostMutationVariables = {
-  input?: DeleteRepostInput,
-  condition?: ModelRepostConditionInput | null,
+export type DeleteRepostV3MutationVariables = {
+  input?: DeleteRepostV3Input,
+  condition?: ModelRepostV3ConditionInput | null,
 };
 
-export type DeleteRepostMutation = {
-  deleteRepost?:  {
-    __typename: "Repost",
+export type DeleteRepostV3Mutation = {
+  deleteRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -684,7 +692,7 @@ export type DeleteRepostMutation = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -698,7 +706,7 @@ export type DeleteRepostMutation = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -716,14 +724,14 @@ export type DeleteRepostMutation = {
   } | null,
 };
 
-export type CreateCommentMutationVariables = {
-  input?: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type CreateCommentV3MutationVariables = {
+  input?: CreateCommentV3Input,
+  condition?: ModelCommentV3ConditionInput | null,
 };
 
-export type CreateCommentMutation = {
-  createComment?:  {
-    __typename: "Comment",
+export type CreateCommentV3Mutation = {
+  createCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -735,7 +743,7 @@ export type CreateCommentMutation = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -749,7 +757,7 @@ export type CreateCommentMutation = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -767,14 +775,14 @@ export type CreateCommentMutation = {
   } | null,
 };
 
-export type UpdateCommentMutationVariables = {
-  input?: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type UpdateCommentV3MutationVariables = {
+  input?: UpdateCommentV3Input,
+  condition?: ModelCommentV3ConditionInput | null,
 };
 
-export type UpdateCommentMutation = {
-  updateComment?:  {
-    __typename: "Comment",
+export type UpdateCommentV3Mutation = {
+  updateCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -786,7 +794,7 @@ export type UpdateCommentMutation = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -800,7 +808,7 @@ export type UpdateCommentMutation = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -818,14 +826,14 @@ export type UpdateCommentMutation = {
   } | null,
 };
 
-export type DeleteCommentMutationVariables = {
-  input?: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type DeleteCommentV3MutationVariables = {
+  input?: DeleteCommentV3Input,
+  condition?: ModelCommentV3ConditionInput | null,
 };
 
-export type DeleteCommentMutation = {
-  deleteComment?:  {
-    __typename: "Comment",
+export type DeleteCommentV3Mutation = {
+  deleteCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -837,7 +845,7 @@ export type DeleteCommentMutation = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -851,7 +859,7 @@ export type DeleteCommentMutation = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -869,14 +877,14 @@ export type DeleteCommentMutation = {
   } | null,
 };
 
-export type CreateLikesMutationVariables = {
-  input?: CreateLikesInput,
-  condition?: ModelLikesConditionInput | null,
+export type CreateLikesV3MutationVariables = {
+  input?: CreateLikesV3Input,
+  condition?: ModelLikesV3ConditionInput | null,
 };
 
-export type CreateLikesMutation = {
-  createLikes?:  {
-    __typename: "Likes",
+export type CreateLikesV3Mutation = {
+  createLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -887,7 +895,7 @@ export type CreateLikesMutation = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -901,7 +909,7 @@ export type CreateLikesMutation = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -919,14 +927,14 @@ export type CreateLikesMutation = {
   } | null,
 };
 
-export type UpdateLikesMutationVariables = {
-  input?: UpdateLikesInput,
-  condition?: ModelLikesConditionInput | null,
+export type UpdateLikesV3MutationVariables = {
+  input?: UpdateLikesV3Input,
+  condition?: ModelLikesV3ConditionInput | null,
 };
 
-export type UpdateLikesMutation = {
-  updateLikes?:  {
-    __typename: "Likes",
+export type UpdateLikesV3Mutation = {
+  updateLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -937,7 +945,7 @@ export type UpdateLikesMutation = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -951,7 +959,7 @@ export type UpdateLikesMutation = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -969,14 +977,14 @@ export type UpdateLikesMutation = {
   } | null,
 };
 
-export type DeleteLikesMutationVariables = {
-  input?: DeleteLikesInput,
-  condition?: ModelLikesConditionInput | null,
+export type DeleteLikesV3MutationVariables = {
+  input?: DeleteLikesV3Input,
+  condition?: ModelLikesV3ConditionInput | null,
 };
 
-export type DeleteLikesMutation = {
-  deleteLikes?:  {
-    __typename: "Likes",
+export type DeleteLikesV3Mutation = {
+  deleteLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -987,7 +995,7 @@ export type DeleteLikesMutation = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1001,7 +1009,7 @@ export type DeleteLikesMutation = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1019,37 +1027,30 @@ export type DeleteLikesMutation = {
   } | null,
 };
 
-export type CreateFeedTypeMutationVariables = {
-  input?: CreateFeedTypeInput,
-  condition?: ModelFeedTypeConditionInput | null,
+export type CreateFeedTypeV3MutationVariables = {
+  input?: CreateFeedTypeV3Input,
+  condition?: ModelFeedTypeV3ConditionInput | null,
 };
 
-export type CreateFeedTypeMutation = {
-  createFeedType?:  {
-    __typename: "FeedType",
+export type CreateFeedTypeV3Mutation = {
+  createFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1063,7 +1064,7 @@ export type CreateFeedTypeMutation = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1081,37 +1082,30 @@ export type CreateFeedTypeMutation = {
   } | null,
 };
 
-export type UpdateFeedTypeMutationVariables = {
-  input?: UpdateFeedTypeInput,
-  condition?: ModelFeedTypeConditionInput | null,
+export type UpdateFeedTypeV3MutationVariables = {
+  input?: UpdateFeedTypeV3Input,
+  condition?: ModelFeedTypeV3ConditionInput | null,
 };
 
-export type UpdateFeedTypeMutation = {
-  updateFeedType?:  {
-    __typename: "FeedType",
+export type UpdateFeedTypeV3Mutation = {
+  updateFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1125,7 +1119,7 @@ export type UpdateFeedTypeMutation = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1143,37 +1137,30 @@ export type UpdateFeedTypeMutation = {
   } | null,
 };
 
-export type DeleteFeedTypeMutationVariables = {
-  input?: DeleteFeedTypeInput,
-  condition?: ModelFeedTypeConditionInput | null,
+export type DeleteFeedTypeV3MutationVariables = {
+  input?: DeleteFeedTypeV3Input,
+  condition?: ModelFeedTypeV3ConditionInput | null,
 };
 
-export type DeleteFeedTypeMutation = {
-  deleteFeedType?:  {
-    __typename: "FeedType",
+export type DeleteFeedTypeV3Mutation = {
+  deleteFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1187,7 +1174,7 @@ export type DeleteFeedTypeMutation = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1205,31 +1192,32 @@ export type DeleteFeedTypeMutation = {
   } | null,
 };
 
-export type CreateFollowingMutationVariables = {
-  input?: CreateFollowingInput,
-  condition?: ModelFollowingConditionInput | null,
+export type CreateFollowingV3MutationVariables = {
+  input?: CreateFollowingV3Input,
+  condition?: ModelFollowingV3ConditionInput | null,
 };
 
-export type CreateFollowingMutation = {
-  createFollowing?:  {
-    __typename: "Following",
+export type CreateFollowingV3Mutation = {
+  createFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1247,31 +1235,32 @@ export type CreateFollowingMutation = {
   } | null,
 };
 
-export type UpdateFollowingMutationVariables = {
-  input?: UpdateFollowingInput,
-  condition?: ModelFollowingConditionInput | null,
+export type UpdateFollowingV3MutationVariables = {
+  input?: UpdateFollowingV3Input,
+  condition?: ModelFollowingV3ConditionInput | null,
 };
 
-export type UpdateFollowingMutation = {
-  updateFollowing?:  {
-    __typename: "Following",
+export type UpdateFollowingV3Mutation = {
+  updateFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1289,31 +1278,32 @@ export type UpdateFollowingMutation = {
   } | null,
 };
 
-export type DeleteFollowingMutationVariables = {
-  input?: DeleteFollowingInput,
-  condition?: ModelFollowingConditionInput | null,
+export type DeleteFollowingV3MutationVariables = {
+  input?: DeleteFollowingV3Input,
+  condition?: ModelFollowingV3ConditionInput | null,
 };
 
-export type DeleteFollowingMutation = {
-  deleteFollowing?:  {
-    __typename: "Following",
+export type DeleteFollowingV3Mutation = {
+  deleteFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1331,14 +1321,14 @@ export type DeleteFollowingMutation = {
   } | null,
 };
 
-export type CreatePostMutationVariables = {
-  input?: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type CreatePostV3MutationVariables = {
+  input?: CreatePostV3Input,
+  condition?: ModelPostV3ConditionInput | null,
 };
 
-export type CreatePostMutation = {
-  createPost?:  {
-    __typename: "Post",
+export type CreatePostV3Mutation = {
+  createPostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -1351,25 +1341,26 @@ export type CreatePostMutation = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -1377,7 +1368,7 @@ export type CreatePostMutation = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1395,14 +1386,14 @@ export type CreatePostMutation = {
   } | null,
 };
 
-export type UpdatePostMutationVariables = {
-  input?: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type UpdatePostV3MutationVariables = {
+  input?: UpdatePostV3Input,
+  condition?: ModelPostV3ConditionInput | null,
 };
 
-export type UpdatePostMutation = {
-  updatePost?:  {
-    __typename: "Post",
+export type UpdatePostV3Mutation = {
+  updatePostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -1415,25 +1406,26 @@ export type UpdatePostMutation = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -1441,7 +1433,7 @@ export type UpdatePostMutation = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1459,14 +1451,14 @@ export type UpdatePostMutation = {
   } | null,
 };
 
-export type DeletePostMutationVariables = {
-  input?: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
+export type DeletePostV3MutationVariables = {
+  input?: DeletePostV3Input,
+  condition?: ModelPostV3ConditionInput | null,
 };
 
-export type DeletePostMutation = {
-  deletePost?:  {
-    __typename: "Post",
+export type DeletePostV3Mutation = {
+  deletePostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -1479,25 +1471,26 @@ export type DeletePostMutation = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -1505,7 +1498,7 @@ export type DeletePostMutation = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1523,14 +1516,14 @@ export type DeletePostMutation = {
   } | null,
 };
 
-export type CreateProfileMutationVariables = {
-  input?: CreateProfileInput,
-  condition?: ModelProfileConditionInput | null,
+export type CreateProfileV3MutationVariables = {
+  input?: CreateProfileV3Input,
+  condition?: ModelProfileV3ConditionInput | null,
 };
 
-export type CreateProfileMutation = {
-  createProfile?:  {
-    __typename: "Profile",
+export type CreateProfileV3Mutation = {
+  createProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -1545,46 +1538,46 @@ export type CreateProfileMutation = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
   } | null,
 };
 
-export type UpdateProfileMutationVariables = {
-  input?: UpdateProfileInput,
-  condition?: ModelProfileConditionInput | null,
+export type UpdateProfileV3MutationVariables = {
+  input?: UpdateProfileV3Input,
+  condition?: ModelProfileV3ConditionInput | null,
 };
 
-export type UpdateProfileMutation = {
-  updateProfile?:  {
-    __typename: "Profile",
+export type UpdateProfileV3Mutation = {
+  updateProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -1599,46 +1592,46 @@ export type UpdateProfileMutation = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
   } | null,
 };
 
-export type DeleteProfileMutationVariables = {
-  input?: DeleteProfileInput,
-  condition?: ModelProfileConditionInput | null,
+export type DeleteProfileV3MutationVariables = {
+  input?: DeleteProfileV3Input,
+  condition?: ModelProfileV3ConditionInput | null,
 };
 
-export type DeleteProfileMutation = {
-  deleteProfile?:  {
-    __typename: "Profile",
+export type DeleteProfileV3Mutation = {
+  deleteProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -1653,45 +1646,45 @@ export type DeleteProfileMutation = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
   } | null,
 };
 
-export type GetRepostQueryVariables = {
+export type GetRepostV3QueryVariables = {
   id?: string,
 };
 
-export type GetRepostQuery = {
-  getRepost?:  {
-    __typename: "Repost",
+export type GetRepostV3Query = {
+  getRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -1702,7 +1695,7 @@ export type GetRepostQuery = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1716,7 +1709,7 @@ export type GetRepostQuery = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1734,17 +1727,17 @@ export type GetRepostQuery = {
   } | null,
 };
 
-export type ListRepostsQueryVariables = {
-  filter?: ModelRepostFilterInput | null,
+export type ListRepostV3sQueryVariables = {
+  filter?: ModelRepostV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListRepostsQuery = {
-  listReposts?:  {
-    __typename: "ModelRepostConnection",
+export type ListRepostV3sQuery = {
+  listRepostV3s?:  {
+    __typename: "ModelRepostV3Connection",
     items?:  Array< {
-      __typename: "Repost",
+      __typename: "RepostV3",
       id: string,
       profileID?: string | null,
       postID?: string | null,
@@ -1760,18 +1753,18 @@ export type ListRepostsQuery = {
   } | null,
 };
 
-export type SyncRepostsQueryVariables = {
-  filter?: ModelRepostFilterInput | null,
+export type SyncRepostV3sQueryVariables = {
+  filter?: ModelRepostV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncRepostsQuery = {
-  syncReposts?:  {
-    __typename: "ModelRepostConnection",
+export type SyncRepostV3sQuery = {
+  syncRepostV3s?:  {
+    __typename: "ModelRepostV3Connection",
     items?:  Array< {
-      __typename: "Repost",
+      __typename: "RepostV3",
       id: string,
       profileID?: string | null,
       postID?: string | null,
@@ -1787,13 +1780,13 @@ export type SyncRepostsQuery = {
   } | null,
 };
 
-export type GetCommentQueryVariables = {
+export type GetCommentV3QueryVariables = {
   id?: string,
 };
 
-export type GetCommentQuery = {
-  getComment?:  {
-    __typename: "Comment",
+export type GetCommentV3Query = {
+  getCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -1805,7 +1798,7 @@ export type GetCommentQuery = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1819,7 +1812,7 @@ export type GetCommentQuery = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1837,17 +1830,17 @@ export type GetCommentQuery = {
   } | null,
 };
 
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
+export type ListCommentV3sQueryVariables = {
+  filter?: ModelCommentV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListCommentsQuery = {
-  listComments?:  {
-    __typename: "ModelCommentConnection",
+export type ListCommentV3sQuery = {
+  listCommentV3s?:  {
+    __typename: "ModelCommentV3Connection",
     items?:  Array< {
-      __typename: "Comment",
+      __typename: "CommentV3",
       id: string,
       profileID?: string | null,
       postID?: string | null,
@@ -1864,18 +1857,18 @@ export type ListCommentsQuery = {
   } | null,
 };
 
-export type SyncCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
+export type SyncCommentV3sQueryVariables = {
+  filter?: ModelCommentV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncCommentsQuery = {
-  syncComments?:  {
-    __typename: "ModelCommentConnection",
+export type SyncCommentV3sQuery = {
+  syncCommentV3s?:  {
+    __typename: "ModelCommentV3Connection",
     items?:  Array< {
-      __typename: "Comment",
+      __typename: "CommentV3",
       id: string,
       profileID?: string | null,
       postID?: string | null,
@@ -1892,13 +1885,13 @@ export type SyncCommentsQuery = {
   } | null,
 };
 
-export type GetLikesQueryVariables = {
+export type GetLikesV3QueryVariables = {
   id?: string,
 };
 
-export type GetLikesQuery = {
-  getLikes?:  {
-    __typename: "Likes",
+export type GetLikesV3Query = {
+  getLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -1909,7 +1902,7 @@ export type GetLikesQuery = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -1923,7 +1916,7 @@ export type GetLikesQuery = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -1941,17 +1934,17 @@ export type GetLikesQuery = {
   } | null,
 };
 
-export type ListLikessQueryVariables = {
-  filter?: ModelLikesFilterInput | null,
+export type ListLikesV3sQueryVariables = {
+  filter?: ModelLikesV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListLikessQuery = {
-  listLikess?:  {
-    __typename: "ModelLikesConnection",
+export type ListLikesV3sQuery = {
+  listLikesV3s?:  {
+    __typename: "ModelLikesV3Connection",
     items?:  Array< {
-      __typename: "Likes",
+      __typename: "LikesV3",
       id: string,
       profileID?: string | null,
       postID?: string | null,
@@ -1967,18 +1960,18 @@ export type ListLikessQuery = {
   } | null,
 };
 
-export type SyncLikesQueryVariables = {
-  filter?: ModelLikesFilterInput | null,
+export type SyncLikesV3sQueryVariables = {
+  filter?: ModelLikesV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncLikesQuery = {
-  syncLikes?:  {
-    __typename: "ModelLikesConnection",
+export type SyncLikesV3sQuery = {
+  syncLikesV3s?:  {
+    __typename: "ModelLikesV3Connection",
     items?:  Array< {
-      __typename: "Likes",
+      __typename: "LikesV3",
       id: string,
       profileID?: string | null,
       postID?: string | null,
@@ -1994,36 +1987,29 @@ export type SyncLikesQuery = {
   } | null,
 };
 
-export type GetFeedTypeQueryVariables = {
+export type GetFeedTypeV3QueryVariables = {
   id?: string,
 };
 
-export type GetFeedTypeQuery = {
-  getFeedType?:  {
-    __typename: "FeedType",
+export type GetFeedTypeV3Query = {
+  getFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2037,7 +2023,7 @@ export type GetFeedTypeQuery = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2055,20 +2041,21 @@ export type GetFeedTypeQuery = {
   } | null,
 };
 
-export type ListFeedTypesQueryVariables = {
-  filter?: ModelFeedTypeFilterInput | null,
+export type ListFeedTypeV3sQueryVariables = {
+  filter?: ModelFeedTypeV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListFeedTypesQuery = {
-  listFeedTypes?:  {
-    __typename: "ModelFeedTypeConnection",
+export type ListFeedTypeV3sQuery = {
+  listFeedTypeV3s?:  {
+    __typename: "ModelFeedTypeV3Connection",
     items?:  Array< {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -2080,21 +2067,22 @@ export type ListFeedTypesQuery = {
   } | null,
 };
 
-export type SyncFeedTypesQueryVariables = {
-  filter?: ModelFeedTypeFilterInput | null,
+export type SyncFeedTypeV3sQueryVariables = {
+  filter?: ModelFeedTypeV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncFeedTypesQuery = {
-  syncFeedTypes?:  {
-    __typename: "ModelFeedTypeConnection",
+export type SyncFeedTypeV3sQuery = {
+  syncFeedTypeV3s?:  {
+    __typename: "ModelFeedTypeV3Connection",
     items?:  Array< {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -2106,30 +2094,31 @@ export type SyncFeedTypesQuery = {
   } | null,
 };
 
-export type GetFollowingQueryVariables = {
+export type GetFollowingV3QueryVariables = {
   id?: string,
 };
 
-export type GetFollowingQuery = {
-  getFollowing?:  {
-    __typename: "Following",
+export type GetFollowingV3Query = {
+  getFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2147,22 +2136,23 @@ export type GetFollowingQuery = {
   } | null,
 };
 
-export type ListFollowingsQueryVariables = {
-  filter?: ModelFollowingFilterInput | null,
+export type ListFollowingV3sQueryVariables = {
+  filter?: ModelFollowingV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListFollowingsQuery = {
-  listFollowings?:  {
-    __typename: "ModelFollowingConnection",
+export type ListFollowingV3sQuery = {
+  listFollowingV3s?:  {
+    __typename: "ModelFollowingV3Connection",
     items?:  Array< {
-      __typename: "Following",
+      __typename: "FollowingV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
       followingDate?: string | null,
       followsAll?: boolean | null,
+      feedtype2ID?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -2174,23 +2164,24 @@ export type ListFollowingsQuery = {
   } | null,
 };
 
-export type SyncFollowingsQueryVariables = {
-  filter?: ModelFollowingFilterInput | null,
+export type SyncFollowingV3sQueryVariables = {
+  filter?: ModelFollowingV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncFollowingsQuery = {
-  syncFollowings?:  {
-    __typename: "ModelFollowingConnection",
+export type SyncFollowingV3sQuery = {
+  syncFollowingV3s?:  {
+    __typename: "ModelFollowingV3Connection",
     items?:  Array< {
-      __typename: "Following",
+      __typename: "FollowingV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
       followingDate?: string | null,
       followsAll?: boolean | null,
+      feedtype2ID?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -2202,13 +2193,13 @@ export type SyncFollowingsQuery = {
   } | null,
 };
 
-export type GetPostQueryVariables = {
+export type GetPostV3QueryVariables = {
   id?: string,
 };
 
-export type GetPostQuery = {
-  getPost?:  {
-    __typename: "Post",
+export type GetPostV3Query = {
+  getPostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -2221,25 +2212,26 @@ export type GetPostQuery = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -2247,7 +2239,7 @@ export type GetPostQuery = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2265,17 +2257,17 @@ export type GetPostQuery = {
   } | null,
 };
 
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
+export type ListPostV3sQueryVariables = {
+  filter?: ModelPostV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListPostsQuery = {
-  listPosts?:  {
-    __typename: "ModelPostConnection",
+export type ListPostV3sQuery = {
+  listPostV3s?:  {
+    __typename: "ModelPostV3Connection",
     items?:  Array< {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2293,18 +2285,18 @@ export type ListPostsQuery = {
   } | null,
 };
 
-export type SyncPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
+export type SyncPostV3sQueryVariables = {
+  filter?: ModelPostV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
   lastSync?: number | null,
 };
 
-export type SyncPostsQuery = {
-  syncPosts?:  {
-    __typename: "ModelPostConnection",
+export type SyncPostV3sQuery = {
+  syncPostV3s?:  {
+    __typename: "ModelPostV3Connection",
     items?:  Array< {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2322,43 +2314,13 @@ export type SyncPostsQuery = {
   } | null,
 };
 
-export type ListProfilesQueryVariables = {
-  filter?: ModelProfileFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListProfilesQuery = {
-  listProfiles?:  {
-    __typename: "ModelProfileConnection",
-    items?:  Array< {
-      __typename: "Profile",
-      id: string,
-      name: string,
-      phoneNum?: string | null,
-      email: string,
-      profilePic?: string | null,
-      dob?: string | null,
-      profileDate?: string | null,
-      bio?: string | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken?: string | null,
-    startedAt?: number | null,
-  } | null,
-};
-
-export type GetProfileQueryVariables = {
+export type GetProfileV3QueryVariables = {
   id?: string,
 };
 
-export type GetProfileQuery = {
-  getProfile?:  {
-    __typename: "Profile",
+export type GetProfileV3Query = {
+  getProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -2373,50 +2335,49 @@ export type GetProfileQuery = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
   } | null,
 };
 
-export type SyncProfilesQueryVariables = {
-  filter?: ModelProfileFilterInput | null,
+export type ListProfileV3sQueryVariables = {
+  filter?: ModelProfileV3FilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
-  lastSync?: number | null,
 };
 
-export type SyncProfilesQuery = {
-  syncProfiles?:  {
-    __typename: "ModelProfileConnection",
+export type ListProfileV3sQuery = {
+  listProfileV3s?:  {
+    __typename: "ModelProfileV3Connection",
     items?:  Array< {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2436,9 +2397,40 @@ export type SyncProfilesQuery = {
   } | null,
 };
 
-export type OnCreateRepostSubscription = {
-  onCreateRepost?:  {
-    __typename: "Repost",
+export type SyncProfileV3sQueryVariables = {
+  filter?: ModelProfileV3FilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  lastSync?: number | null,
+};
+
+export type SyncProfileV3sQuery = {
+  syncProfileV3s?:  {
+    __typename: "ModelProfileV3Connection",
+    items?:  Array< {
+      __typename: "ProfileV3",
+      id: string,
+      name: string,
+      phoneNum?: string | null,
+      email: string,
+      profilePic?: string | null,
+      dob?: string | null,
+      profileDate?: string | null,
+      bio?: string | null,
+      _version: number,
+      _deleted?: boolean | null,
+      _lastChangedAt: number,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken?: string | null,
+    startedAt?: number | null,
+  } | null,
+};
+
+export type OnCreateRepostV3Subscription = {
+  onCreateRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2449,7 +2441,7 @@ export type OnCreateRepostSubscription = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2463,7 +2455,7 @@ export type OnCreateRepostSubscription = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2481,9 +2473,9 @@ export type OnCreateRepostSubscription = {
   } | null,
 };
 
-export type OnUpdateRepostSubscription = {
-  onUpdateRepost?:  {
-    __typename: "Repost",
+export type OnUpdateRepostV3Subscription = {
+  onUpdateRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2494,7 +2486,7 @@ export type OnUpdateRepostSubscription = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2508,7 +2500,7 @@ export type OnUpdateRepostSubscription = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2526,9 +2518,9 @@ export type OnUpdateRepostSubscription = {
   } | null,
 };
 
-export type OnDeleteRepostSubscription = {
-  onDeleteRepost?:  {
-    __typename: "Repost",
+export type OnDeleteRepostV3Subscription = {
+  onDeleteRepostV3?:  {
+    __typename: "RepostV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2539,7 +2531,7 @@ export type OnDeleteRepostSubscription = {
     createdAt: string,
     updatedAt: string,
     RepostToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2553,7 +2545,7 @@ export type OnDeleteRepostSubscription = {
       updatedAt: string,
     } | null,
     RepostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2571,9 +2563,9 @@ export type OnDeleteRepostSubscription = {
   } | null,
 };
 
-export type OnCreateCommentSubscription = {
-  onCreateComment?:  {
-    __typename: "Comment",
+export type OnCreateCommentV3Subscription = {
+  onCreateCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2585,7 +2577,7 @@ export type OnCreateCommentSubscription = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2599,7 +2591,7 @@ export type OnCreateCommentSubscription = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2617,9 +2609,9 @@ export type OnCreateCommentSubscription = {
   } | null,
 };
 
-export type OnUpdateCommentSubscription = {
-  onUpdateComment?:  {
-    __typename: "Comment",
+export type OnUpdateCommentV3Subscription = {
+  onUpdateCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2631,7 +2623,7 @@ export type OnUpdateCommentSubscription = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2645,7 +2637,7 @@ export type OnUpdateCommentSubscription = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2663,9 +2655,9 @@ export type OnUpdateCommentSubscription = {
   } | null,
 };
 
-export type OnDeleteCommentSubscription = {
-  onDeleteComment?:  {
-    __typename: "Comment",
+export type OnDeleteCommentV3Subscription = {
+  onDeleteCommentV3?:  {
+    __typename: "CommentV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2677,7 +2669,7 @@ export type OnDeleteCommentSubscription = {
     createdAt: string,
     updatedAt: string,
     CommentToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2691,7 +2683,7 @@ export type OnDeleteCommentSubscription = {
       updatedAt: string,
     } | null,
     CommentToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2709,9 +2701,9 @@ export type OnDeleteCommentSubscription = {
   } | null,
 };
 
-export type OnCreateLikesSubscription = {
-  onCreateLikes?:  {
-    __typename: "Likes",
+export type OnCreateLikesV3Subscription = {
+  onCreateLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2722,7 +2714,7 @@ export type OnCreateLikesSubscription = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2736,7 +2728,7 @@ export type OnCreateLikesSubscription = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2754,9 +2746,9 @@ export type OnCreateLikesSubscription = {
   } | null,
 };
 
-export type OnUpdateLikesSubscription = {
-  onUpdateLikes?:  {
-    __typename: "Likes",
+export type OnUpdateLikesV3Subscription = {
+  onUpdateLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2767,7 +2759,7 @@ export type OnUpdateLikesSubscription = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2781,7 +2773,7 @@ export type OnUpdateLikesSubscription = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2799,9 +2791,9 @@ export type OnUpdateLikesSubscription = {
   } | null,
 };
 
-export type OnDeleteLikesSubscription = {
-  onDeleteLikes?:  {
-    __typename: "Likes",
+export type OnDeleteLikesV3Subscription = {
+  onDeleteLikesV3?:  {
+    __typename: "LikesV3",
     id: string,
     profileID?: string | null,
     postID?: string | null,
@@ -2812,7 +2804,7 @@ export type OnDeleteLikesSubscription = {
     createdAt: string,
     updatedAt: string,
     LikeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2826,7 +2818,7 @@ export type OnDeleteLikesSubscription = {
       updatedAt: string,
     } | null,
     LikeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2844,32 +2836,25 @@ export type OnDeleteLikesSubscription = {
   } | null,
 };
 
-export type OnCreateFeedTypeSubscription = {
-  onCreateFeedType?:  {
-    __typename: "FeedType",
+export type OnCreateFeedTypeV3Subscription = {
+  onCreateFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2883,7 +2868,7 @@ export type OnCreateFeedTypeSubscription = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2901,32 +2886,25 @@ export type OnCreateFeedTypeSubscription = {
   } | null,
 };
 
-export type OnUpdateFeedTypeSubscription = {
-  onUpdateFeedType?:  {
-    __typename: "FeedType",
+export type OnUpdateFeedTypeV3Subscription = {
+  onUpdateFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2940,7 +2918,7 @@ export type OnUpdateFeedTypeSubscription = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -2958,32 +2936,25 @@ export type OnUpdateFeedTypeSubscription = {
   } | null,
 };
 
-export type OnDeleteFeedTypeSubscription = {
-  onDeleteFeedType?:  {
-    __typename: "FeedType",
+export type OnDeleteFeedTypeV3Subscription = {
+  onDeleteFeedTypeV3?:  {
+    __typename: "FeedTypeV3",
     id: string,
     profileID?: string | null,
     followingID?: string | null,
+    feedName?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FeedTypeToFollowing?:  {
-      __typename: "Following",
-      id: string,
-      profileID?: string | null,
-      feedTypeID?: string | null,
-      followingDate?: string | null,
-      followsAll?: boolean | null,
-      _version: number,
-      _deleted?: boolean | null,
-      _lastChangedAt: number,
-      createdAt: string,
-      updatedAt: string,
+      __typename: "ModelFollowingV3Connection",
+      nextToken?: string | null,
+      startedAt?: number | null,
     } | null,
     FeedTypeToPost?:  {
-      __typename: "Post",
+      __typename: "PostV3",
       id: string,
       profileID?: string | null,
       feedTypeID?: string | null,
@@ -2997,7 +2968,7 @@ export type OnDeleteFeedTypeSubscription = {
       updatedAt: string,
     } | null,
     FeedTypeToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3015,26 +2986,27 @@ export type OnDeleteFeedTypeSubscription = {
   } | null,
 };
 
-export type OnCreateFollowingSubscription = {
-  onCreateFollowing?:  {
-    __typename: "Following",
+export type OnCreateFollowingV3Subscription = {
+  onCreateFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3052,26 +3024,27 @@ export type OnCreateFollowingSubscription = {
   } | null,
 };
 
-export type OnUpdateFollowingSubscription = {
-  onUpdateFollowing?:  {
-    __typename: "Following",
+export type OnUpdateFollowingV3Subscription = {
+  onUpdateFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3089,26 +3062,27 @@ export type OnUpdateFollowingSubscription = {
   } | null,
 };
 
-export type OnDeleteFollowingSubscription = {
-  onDeleteFollowing?:  {
-    __typename: "Following",
+export type OnDeleteFollowingV3Subscription = {
+  onDeleteFollowingV3?:  {
+    __typename: "FollowingV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
     followingDate?: string | null,
     followsAll?: boolean | null,
+    feedtype2ID?: string | null,
     _version: number,
     _deleted?: boolean | null,
     _lastChangedAt: number,
     createdAt: string,
     updatedAt: string,
     FollowingToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     FollowingToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3126,9 +3100,9 @@ export type OnDeleteFollowingSubscription = {
   } | null,
 };
 
-export type OnCreatePostSubscription = {
-  onCreatePost?:  {
-    __typename: "Post",
+export type OnCreatePostV3Subscription = {
+  onCreatePostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -3141,25 +3115,26 @@ export type OnCreatePostSubscription = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -3167,7 +3142,7 @@ export type OnCreatePostSubscription = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3185,9 +3160,9 @@ export type OnCreatePostSubscription = {
   } | null,
 };
 
-export type OnUpdatePostSubscription = {
-  onUpdatePost?:  {
-    __typename: "Post",
+export type OnUpdatePostV3Subscription = {
+  onUpdatePostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -3200,25 +3175,26 @@ export type OnUpdatePostSubscription = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -3226,7 +3202,7 @@ export type OnUpdatePostSubscription = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3244,9 +3220,9 @@ export type OnUpdatePostSubscription = {
   } | null,
 };
 
-export type OnDeletePostSubscription = {
-  onDeletePost?:  {
-    __typename: "Post",
+export type OnDeletePostV3Subscription = {
+  onDeletePostV3?:  {
+    __typename: "PostV3",
     id: string,
     profileID?: string | null,
     feedTypeID?: string | null,
@@ -3259,25 +3235,26 @@ export type OnDeletePostSubscription = {
     createdAt: string,
     updatedAt: string,
     PostToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     PostToFeedType?:  {
-      __typename: "FeedType",
+      __typename: "FeedTypeV3",
       id: string,
       profileID?: string | null,
       followingID?: string | null,
+      feedName?: string | null,
       _version: number,
       _deleted?: boolean | null,
       _lastChangedAt: number,
@@ -3285,7 +3262,7 @@ export type OnDeletePostSubscription = {
       updatedAt: string,
     } | null,
     PostToProfile?:  {
-      __typename: "Profile",
+      __typename: "ProfileV3",
       id: string,
       name: string,
       phoneNum?: string | null,
@@ -3303,9 +3280,9 @@ export type OnDeletePostSubscription = {
   } | null,
 };
 
-export type OnCreateProfileSubscription = {
-  onCreateProfile?:  {
-    __typename: "Profile",
+export type OnCreateProfileV3Subscription = {
+  onCreateProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -3320,41 +3297,41 @@ export type OnCreateProfileSubscription = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
   } | null,
 };
 
-export type OnUpdateProfileSubscription = {
-  onUpdateProfile?:  {
-    __typename: "Profile",
+export type OnUpdateProfileV3Subscription = {
+  onUpdateProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -3369,41 +3346,41 @@ export type OnUpdateProfileSubscription = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
   } | null,
 };
 
-export type OnDeleteProfileSubscription = {
-  onDeleteProfile?:  {
-    __typename: "Profile",
+export type OnDeleteProfileV3Subscription = {
+  onDeleteProfileV3?:  {
+    __typename: "ProfileV3",
     id: string,
     name: string,
     phoneNum?: string | null,
@@ -3418,32 +3395,32 @@ export type OnDeleteProfileSubscription = {
     createdAt: string,
     updatedAt: string,
     ProfileToReposts?:  {
-      __typename: "ModelRepostConnection",
+      __typename: "ModelRepostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToComments?:  {
-      __typename: "ModelCommentConnection",
+      __typename: "ModelCommentV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToLikes?:  {
-      __typename: "ModelLikesConnection",
+      __typename: "ModelLikesV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFeedTypes?:  {
-      __typename: "ModelFeedTypeConnection",
+      __typename: "ModelFeedTypeV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToFollowings?:  {
-      __typename: "ModelFollowingConnection",
+      __typename: "ModelFollowingV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,
     ProfileToPosts?:  {
-      __typename: "ModelPostConnection",
+      __typename: "ModelPostV3Connection",
       nextToken?: string | null,
       startedAt?: number | null,
     } | null,

@@ -4,9 +4,6 @@ import { StyleSheet, Image, ScrollView } from 'react-native';
 import { Text, View } from '../components/Themed';
 import FeedDisp from '../components/FeedDisplay';
 import { gql, useQuery } from '@apollo/client';
-import { getProfile } from '../src/graphql/queries';
-import { getFeedType } from '../src/graphql/queries';
-import { getPost } from '../src/graphql/queries';
 import { getProfilePageDetails } from '../src/graphql/custom-queries';
 
 import Auth, { CognitoUser } from '@aws-amplify/auth';
@@ -16,6 +13,7 @@ import { isUsernamePasswordOpts,CurrentUserOpts } from '@aws-amplify/auth/lib-es
 import { Amplify, Hub } from 'aws-amplify';
 import { UserInterfaceIdiom } from 'expo-constants';
 import { client } from '../App';
+
 
 
 
@@ -72,10 +70,18 @@ const displayFeed =  profile.ProfileToFeedTypes.items.map((feed: any) => {
     return <FeedDisp feedName={feed.feedName} followers={feed.FeedTypeToFollowing.items.length}/> 
  });
 
+
+export default function TabOneScreen() {
+
+
+       
+
+
+ 
     return (
         <View style={styles.container}>
-            <View style={{ flex: 8, flexDirection: 'row' }}>
-                <Image source={require('../assets/images/Abdullah.JPG')} style={{ flex: 3, borderColor: 'gainsboro', borderWidth:15 }} />
+            <View style={{ flex: 3, flexDirection: 'row' }}>
+                <Image source={require('../assets/images/profilePictureExample.jpg')} style={{ flex: 3, borderColor: 'gainsboro', borderWidth:10 }} />
                 <View style={{ flex: 5, justifyContent: 'center', backgroundColor: 'gainsboro' }}>
                     <Text style={styles.pageText}>{profile.name}</Text>
                 </View>
@@ -93,12 +99,16 @@ const displayFeed =  profile.ProfileToFeedTypes.items.map((feed: any) => {
             <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
                 <ScrollView>
+
                     {displayFeed}
+
                 </ScrollView>
             </View>
-          <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
+            <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
+
                 <Text style={styles.pageTextLeft}>{displayPost()} </Text>
+
             </View>
     </View>
   );
@@ -132,6 +142,7 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     }
     
+
 });
 
 function currentUserInfo() {

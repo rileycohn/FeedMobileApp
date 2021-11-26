@@ -3,19 +3,19 @@ import { View, Text, Image } from 'react-native';
 import LeftContainer from "./LeftContainer";
 import MainContainer from "./MainContainer";
 
-import { TweetType } from '../../types';
-import tweets from '../../data/tweets';
+import { FeedType } from '../../types';
+import feeds from '../../data/feeds';
 import styles from './styles';
 
-export type TweetProps = {
-    tweet: TweetType
+export type FeedProps = {
+    feed: FeedType
 }
 
-const Tweet = ({ tweet }: TweetProps) => (
+const Feed = ({ feed }: FeedProps) => (
     <View style={styles.container}>
         {/*<LeftContainer user={tweets.user}/>*/}
-        <MainContainer tweet={tweet} />  
+        <MainContainer feed={feed} />  
     </View>
 )
 
-export default Tweet;
+export default Feed;

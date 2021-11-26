@@ -2,9 +2,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getRepost = /* GraphQL */ `
-  query GetRepost($id: ID!) {
-    getRepost(id: $id) {
+export const getRepostV3 = /* GraphQL */ `
+  query GetRepostV3($id: ID!) {
+    getRepostV3(id: $id) {
       id
       profileID
       postID
@@ -45,13 +45,13 @@ export const getRepost = /* GraphQL */ `
     }
   }
 `;
-export const listReposts = /* GraphQL */ `
-  query ListReposts(
-    $filter: ModelRepostFilterInput
+export const listRepostV3s = /* GraphQL */ `
+  query ListRepostV3s(
+    $filter: ModelRepostV3FilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listReposts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listRepostV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         profileID
@@ -68,14 +68,14 @@ export const listReposts = /* GraphQL */ `
     }
   }
 `;
-export const syncReposts = /* GraphQL */ `
-  query SyncReposts(
-    $filter: ModelRepostFilterInput
+export const syncRepostV3s = /* GraphQL */ `
+  query SyncRepostV3s(
+    $filter: ModelRepostV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncReposts(
+    syncRepostV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -97,9 +97,9 @@ export const syncReposts = /* GraphQL */ `
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getCommentV3 = /* GraphQL */ `
+  query GetCommentV3($id: ID!) {
+    getCommentV3(id: $id) {
       id
       profileID
       postID
@@ -141,13 +141,13 @@ export const getComment = /* GraphQL */ `
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listCommentV3s = /* GraphQL */ `
+  query ListCommentV3s(
+    $filter: ModelCommentV3FilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listCommentV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         profileID
@@ -165,14 +165,14 @@ export const listComments = /* GraphQL */ `
     }
   }
 `;
-export const syncComments = /* GraphQL */ `
-  query SyncComments(
-    $filter: ModelCommentFilterInput
+export const syncCommentV3s = /* GraphQL */ `
+  query SyncCommentV3s(
+    $filter: ModelCommentV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncComments(
+    syncCommentV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -195,9 +195,9 @@ export const syncComments = /* GraphQL */ `
     }
   }
 `;
-export const getLikes = /* GraphQL */ `
-  query GetLikes($id: ID!) {
-    getLikes(id: $id) {
+export const getLikesV3 = /* GraphQL */ `
+  query GetLikesV3($id: ID!) {
+    getLikesV3(id: $id) {
       id
       profileID
       postID
@@ -238,13 +238,13 @@ export const getLikes = /* GraphQL */ `
     }
   }
 `;
-export const listLikess = /* GraphQL */ `
-  query ListLikess(
-    $filter: ModelLikesFilterInput
+export const listLikesV3s = /* GraphQL */ `
+  query ListLikesV3s(
+    $filter: ModelLikesV3FilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listLikess(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listLikesV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         profileID
@@ -261,14 +261,14 @@ export const listLikess = /* GraphQL */ `
     }
   }
 `;
-export const syncLikes = /* GraphQL */ `
-  query SyncLikes(
-    $filter: ModelLikesFilterInput
+export const syncLikesV3s = /* GraphQL */ `
+  query SyncLikesV3s(
+    $filter: ModelLikesV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncLikes(
+    syncLikesV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -290,28 +290,21 @@ export const syncLikes = /* GraphQL */ `
     }
   }
 `;
-export const getFeedType = /* GraphQL */ `
-  query GetFeedType($id: ID!) {
-    getFeedType(id: $id) {
+export const getFeedTypeV3 = /* GraphQL */ `
+  query GetFeedTypeV3($id: ID!) {
+    getFeedTypeV3(id: $id) {
       id
       profileID
       followingID
+      feedName
       _version
       _deleted
       _lastChangedAt
       createdAt
       updatedAt
       FeedTypeToFollowing {
-        id
-        profileID
-        feedTypeID
-        followingDate
-        followsAll
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
+        startedAt
       }
       FeedTypeToPost {
         id
@@ -344,17 +337,18 @@ export const getFeedType = /* GraphQL */ `
     }
   }
 `;
-export const listFeedTypes = /* GraphQL */ `
-  query ListFeedTypes(
-    $filter: ModelFeedTypeFilterInput
+export const listFeedTypeV3s = /* GraphQL */ `
+  query ListFeedTypeV3s(
+    $filter: ModelFeedTypeV3FilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listFeedTypes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listFeedTypeV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -366,14 +360,14 @@ export const listFeedTypes = /* GraphQL */ `
     }
   }
 `;
-export const syncFeedTypes = /* GraphQL */ `
-  query SyncFeedTypes(
-    $filter: ModelFeedTypeFilterInput
+export const syncFeedTypeV3s = /* GraphQL */ `
+  query SyncFeedTypeV3s(
+    $filter: ModelFeedTypeV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncFeedTypes(
+    syncFeedTypeV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -383,6 +377,7 @@ export const syncFeedTypes = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -394,14 +389,15 @@ export const syncFeedTypes = /* GraphQL */ `
     }
   }
 `;
-export const getFollowing = /* GraphQL */ `
-  query GetFollowing($id: ID!) {
-    getFollowing(id: $id) {
+export const getFollowingV3 = /* GraphQL */ `
+  query GetFollowingV3($id: ID!) {
+    getFollowingV3(id: $id) {
       id
       profileID
       feedTypeID
       followingDate
       followsAll
+      feedtype2ID
       _version
       _deleted
       _lastChangedAt
@@ -429,19 +425,20 @@ export const getFollowing = /* GraphQL */ `
     }
   }
 `;
-export const listFollowings = /* GraphQL */ `
-  query ListFollowings(
-    $filter: ModelFollowingFilterInput
+export const listFollowingV3s = /* GraphQL */ `
+  query ListFollowingV3s(
+    $filter: ModelFollowingV3FilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listFollowings(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listFollowingV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         profileID
         feedTypeID
         followingDate
         followsAll
+        feedtype2ID
         _version
         _deleted
         _lastChangedAt
@@ -453,14 +450,14 @@ export const listFollowings = /* GraphQL */ `
     }
   }
 `;
-export const syncFollowings = /* GraphQL */ `
-  query SyncFollowings(
-    $filter: ModelFollowingFilterInput
+export const syncFollowingV3s = /* GraphQL */ `
+  query SyncFollowingV3s(
+    $filter: ModelFollowingV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncFollowings(
+    syncFollowingV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -472,6 +469,7 @@ export const syncFollowings = /* GraphQL */ `
         feedTypeID
         followingDate
         followsAll
+        feedtype2ID
         _version
         _deleted
         _lastChangedAt
@@ -483,9 +481,9 @@ export const syncFollowings = /* GraphQL */ `
     }
   }
 `;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getPostV3 = /* GraphQL */ `
+  query GetPostV3($id: ID!) {
+    getPostV3(id: $id) {
       id
       profileID
       feedTypeID
@@ -513,6 +511,7 @@ export const getPost = /* GraphQL */ `
         id
         profileID
         followingID
+        feedName
         _version
         _deleted
         _lastChangedAt
@@ -537,13 +536,13 @@ export const getPost = /* GraphQL */ `
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listPostV3s = /* GraphQL */ `
+  query ListPostV3s(
+    $filter: ModelPostV3FilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listPostV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         profileID
@@ -562,14 +561,14 @@ export const listPosts = /* GraphQL */ `
     }
   }
 `;
-export const syncPosts = /* GraphQL */ `
-  query SyncPosts(
-    $filter: ModelPostFilterInput
+export const syncPostV3s = /* GraphQL */ `
+  query SyncPostV3s(
+    $filter: ModelPostV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncPosts(
+    syncPostV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
@@ -593,36 +592,9 @@ export const syncPosts = /* GraphQL */ `
     }
   }
 `;
-export const listProfiles = /* GraphQL */ `
-  query ListProfiles(
-    $filter: ModelProfileFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listProfiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        phoneNum
-        email
-        profilePic
-        dob
-        profileDate
-        bio
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getProfile = /* GraphQL */ `
-  query GetProfile($id: ID!) {
-    getProfile(id: $id) {
+export const getProfileV3 = /* GraphQL */ `
+  query GetProfileV3($id: ID!) {
+    getProfileV3(id: $id) {
       id
       name
       phoneNum
@@ -663,14 +635,41 @@ export const getProfile = /* GraphQL */ `
     }
   }
 `;
-export const syncProfiles = /* GraphQL */ `
-  query SyncProfiles(
-    $filter: ModelProfileFilterInput
+export const listProfileV3s = /* GraphQL */ `
+  query ListProfileV3s(
+    $filter: ModelProfileV3FilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProfileV3s(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        phoneNum
+        email
+        profilePic
+        dob
+        profileDate
+        bio
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncProfileV3s = /* GraphQL */ `
+  query SyncProfileV3s(
+    $filter: ModelProfileV3FilterInput
     $limit: Int
     $nextToken: String
     $lastSync: AWSTimestamp
   ) {
-    syncProfiles(
+    syncProfileV3s(
       filter: $filter
       limit: $limit
       nextToken: $nextToken
