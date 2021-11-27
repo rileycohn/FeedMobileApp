@@ -10,57 +10,104 @@ import { UpdateProfileV3Input, UpdateProfileV3MutationVariables } from '../src/A
 import { client } from '../App';
 import { updateProfileV3 } from '../src/graphql/mutations';
 import { Auth } from 'aws-amplify';
+import { useEffect } from 'react';
 
 
 export default function TabOneScreen(){
 
-    const currentUser = Auth.currentAuthenticatedUser({ bypassCache: true });
+    const [profile, setProfile] = React.useState();
+    const [isReady, setIsReady] = React.useState(false);
+    const [name, setName] = React.useState("thiscannotbeyourname");
+    const [bio, setBio] = React.useState("thiscannotbeyourbio");
+    const [editable, setEditable] = React.useState(false);
 
-    const { loading, error, data } = useQuery(gql`${getProfilePageDetails}`, {
-        variables: {id:"1"}
-    });
-    if (loading) return  null;
-    if (error)  return `Error! ${error}`; 
-    const profile = data.getProfileV3; 
+    useEffect(() => {
 
+        Auth.currentAuthenticatedUser({
+            bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+        }).then(user => {
+            console.log(user.getUsername())
+            client
+                .query({
+                    query: gql`
+                    ${getProfilePageDetails}`,
+                    variables: { profileID: user.getUsername() }
+                })
+
+                .then(result => {
+                    console.log(result)
+                    setProfile(result.data.getProfileV3);
+                    setIsReady(true)
+                });
+        }
+        )
+            .catch(err => console.log(err));
+    }, [])
+
+    if (!isReady || !profile) {
+        return null
+    }
 
     //handling profile info text inputs with states
     //has error below of "implicit any type" - this does not affect compiling or function
-    const [name, setName] = React.useState(profile.name);
-    const [bio, setBio] = React.useState(profile.bio);
 
     const handleNameChange = n => {
         setName(n.target.value);
+        setEditable(true);
+        console.log("name changed");
     }
     const handleBioChange = b => {
         setBio(b.target.value);
+        setEditable(true);
+        console.log("bio changed")
+        console.log(b.target.value);
     }
+
+    function displayPost() {
+        return profile.ProfileToPosts.items.map((posts) => {
+            return (posts.post + "\n");
+        });
+
+    }
+    const displayFeed = profile.ProfileToFeedTypes.items.map((feed: any) => {
+        return <FeedDisp feedName={feed.feedName} followers={feed.FeedTypeToFollowing.items.length} />
+    });
 
     //handling the save changes button being clicked
     const saveChangesButtonPressed = () => {
+        if (editable) {
 
-        let input: UpdateProfileV3Input = {
-            id: "4fe242b4-e29e-4f9e-bc29-a42bfb51a3e6",
-            name: name,
-            bio: bio
+            if (name == "thiscannotbeyourname") {
+                setName(profile.name);
+            }
+            if (bio == "thiscannotbeyourbio") {
+                setBio(profile.bio);
+            }
+
+            let input: UpdateProfileV3Input = {
+                id: profile.id,
+                name: name,
+                bio: bio
+            }
+
+            console.log("id: " + profile.id);
+            console.log("name: " + name);
+            console.log("bio: " + profile.bio);
+
+            let variables: UpdateProfileV3MutationVariables = {
+                input
+            }
+
+            const result = client.mutate({
+                mutation: gql`${updateProfileV3}`,
+                variables: variables
+            }).then(value => { console.log(value) })
+                .catch(error => { console.log(error) })
+
+            console.log(result);
         }
-
-        let variables: UpdateProfileV3MutationVariables = {
-            input
-        }
-
-        const result = client.mutate({
-            mutation: gql`${updateProfileV3}`,
-            variables: variables
-        }).then(value => { console.log(value) })
-            .catch(error => { console.log(error) })
-
-        console.log(result);
-        console.log(error);
     } 
 
-
-    console.log(data);
 
  
     return (
@@ -81,19 +128,17 @@ export default function TabOneScreen(){
                 <TextInput style={styles.pageText} defaultValue={profile.bio} onChange={handleBioChange} />
             </View>
             <Button title="Save Profile Changes" onPress= {saveChangesButtonPressed} />
-            <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
+            <View style={{ flex: 7, backgroundColor: 'gainsboro' }}>
                 <Text style={styles.pageTextLeft}>Feeds:</Text>
                 <ScrollView>
-                    <FeedDisp feedName= {profile.ProfileToFeedTypes.items[0].feedName} followers={profile.ProfileToFeedTypes.items[0].FeedTypeToFollowing.items.length} />
-                    <FeedDisp feedName='Feed2' followers='113' />
-                    <FeedDisp feedName='Feed3' followers='62' />
+                    {displayFeed}
                 </ScrollView>
                 <Button title="Add New Feed" onPress={() => { }} />
             </View>
-            <View style={{ flex: 7, backgroundColor: 'gainsboro'}}>
+            <View style={{ flex: 7, backgroundColor: 'gainsboro' }}>
                 <Text style={styles.pageTextLeft}>Recent Posts:</Text>
-                <Text style={styles.pageTextLeft}>{profile.ProfileToPosts.items[0].post}</Text>
-                <Button title="Add New Post" onPress={() => { }}/>
+                <Text style={styles.pageTextLeft}>{displayPost()} </Text>
+                <Button title="Add New Post" onPress={() => { }} />
             </View>
     </View>
   );

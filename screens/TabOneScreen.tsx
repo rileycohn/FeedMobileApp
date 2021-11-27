@@ -19,44 +19,34 @@ import { client } from '../App';
 
 export default function TabOneScreen() {
 
+    const[profile, setProfile] = React.useState();
+    const[isReady, setIsReady] = React.useState(false);
 
-      const[profile, setProfile] = React.useState();
-      const[isReady, setIsReady] = React.useState(false);
-
-        
-        useEffect(() => {
-            
-
+    useEffect(() => {
+    
         Auth.currentAuthenticatedUser({
             bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
         }).then(user => {
-            
             console.log(user.getUsername())
             client
             .query({
-              query: gql`
-                   ${getProfilePageDetails}`, 
-                   variables : { profileID: user.getUsername()}
+                query: gql`
+                    ${getProfilePageDetails}`, 
+                    variables : { profileID: user.getUsername()}
             })
 
             .then(result => {console.log(result)
                 setProfile(result.data.getProfileV3); 
                 setIsReady(true)});
         }
-            )
+        )
         .catch(err => console.log(err));
+        }, [])
 
-       
-        
-         }, [])
-
-
-
- if(!isReady || !profile)
-{ 
-    return null
-}
-
+    if(!isReady || !profile)
+    { 
+        return null
+    }
 
     function displayPost() {
         return profile.ProfileToPosts.items.map ((posts) =>
@@ -64,16 +54,9 @@ export default function TabOneScreen() {
         });
 
     }
-
-
-const displayFeed =  profile.ProfileToFeedTypes.items.map((feed: any) => {
-    return <FeedDisp feedName={feed.feedName} followers={feed.FeedTypeToFollowing.items.length}/> 
- });
-
-
-export default function TabOneScreen() {
-
-
+    const displayFeed =  profile.ProfileToFeedTypes.items.map((feed: any) => {
+        return <FeedDisp feedName={feed.feedName} followers={feed.FeedTypeToFollowing.items.length}/> 
+     });
        
 
 
