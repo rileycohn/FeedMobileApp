@@ -10,6 +10,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabFourScreen from '../screens/TabFourScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import ProfilePageEditableScreen from '../screens/ProfilePageEditableScreen'
 import { BottomTabParamList, HomeScreenParamList, TabFourParamList, TabOneParamList, TabTwoParamList } from '../types';
 import ProfilePicture from '../components/ProfilePicture';
 import HomeScreen from '../screens/HomeScreen';
@@ -50,10 +51,10 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Messages"
+        name="EditProfile"
         component={TabFourNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-mail" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="ios-person" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -148,8 +149,8 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+              name="TabTwoScreen"
+              component={TabTwoScreen}
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
@@ -162,9 +163,9 @@ function TabFourNavigator() {
   return (
     <TabFourStack.Navigator>
       <TabFourStack.Screen
-        name="TabFourScreen"
-        component={TabFourScreen}
-        options={{ headerTitle: 'Tab Four Title' }}
+              name="EditProfile"
+              component={ProfilePageEditableScreen}
+        options={{ headerTitle: 'Edit Profile' }}
       />
     </TabFourStack.Navigator>
   );
